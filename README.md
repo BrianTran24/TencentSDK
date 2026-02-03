@@ -41,6 +41,22 @@
 
 For detailed directions involved in this section, see [SDK Integration (Flutter)](https://trtc.io/document/46264?platform=flutter&product=chat&menulabel=sdk).
 
+## Building for Web
+
+To build the demo application for web deployment, you can use the provided build scripts:
+
+**Linux/macOS:**
+```bash
+./build_web.sh
+```
+
+**Windows:**
+```cmd
+build_web.bat
+```
+
+For detailed instructions on building, testing, and deploying the web version, see [WEB_BUILD_GUIDE.md](WEB_BUILD_GUIDE.md).
+
 ## Contact Us
 
 Please do not hesitate to contact us in the following place, if you have any further questions or tend to learn more about the use cases.
