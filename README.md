@@ -55,7 +55,9 @@ To build the demo application for web deployment, you can use the provided build
 build_web.bat
 ```
 
-For detailed instructions on building, testing, and deploying the web version, see [WEB_BUILD_GUIDE.md](WEB_BUILD_GUIDE.md).
+For detailed instructions on building, testing, and deploying the web version:
+- English: [WEB_BUILD_GUIDE.md](WEB_BUILD_GUIDE.md)
+- Tiếng Việt: [HUONG_DAN_BUILD_WEB.md](HUONG_DAN_BUILD_WEB.md)
 
 ## Contact Us
 
