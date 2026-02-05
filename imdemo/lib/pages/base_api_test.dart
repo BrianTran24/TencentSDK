@@ -124,7 +124,7 @@ class _BaseAPITestState extends State<BaseAPITest> {
           ),
           body: Column(
             children: [
-              // 日志区域
+              // Log area
               Container(
                 height: APITestStyle.LOG_AREA_HEIGHT,
                 color: APITestStyle.LOG_AREA_BG_COLOR,
