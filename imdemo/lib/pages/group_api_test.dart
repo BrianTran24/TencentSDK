@@ -4,21 +4,21 @@ import 'package:tencent_cloud_chat_sdk/enum/group_application_type_enum.dart';
 import 'package:tencent_cloud_chat_sdk/enum/group_member_filter_enum.dart';
 import 'package:tencent_cloud_chat_sdk/enum/group_member_role_enum.dart';
 import 'package:tencent_cloud_chat_sdk/models/v2_tim_group_info.dart'
-    if (dart.library.html) 'package:tencent_cloud_chat_sdk/web/compatible_models/v2_tim_group_info.dart';
+  if (dart.library.html) 'package:tencent_cloud_chat_sdk/web/compatible_models/v2_tim_group_info.dart';
 import 'package:tencent_cloud_chat_sdk/models/v2_tim_group_member.dart'
-    if (dart.library.html) 'package:tencent_cloud_chat_sdk/web/compatible_models/v2_tim_group_member.dart';
+  if (dart.library.html) 'package:tencent_cloud_chat_sdk/web/compatible_models/v2_tim_group_member.dart';
 import 'package:tencent_cloud_chat_sdk/models/v2_tim_group_member_full_info.dart'
-    if (dart.library.html) 'package:tencent_cloud_chat_sdk/web/compatible_models/v2_tim_group_member_full_info.dart';
+  if (dart.library.html) 'package:tencent_cloud_chat_sdk/web/compatible_models/v2_tim_group_member_full_info.dart';
 import 'package:tencent_cloud_chat_sdk/models/v2_tim_group_member_info_result.dart'
-    if (dart.library.html) 'package:tencent_cloud_chat_sdk/web/compatible_models/v2_tim_group_member_info_result.dart';
+  if (dart.library.html) 'package:tencent_cloud_chat_sdk/web/compatible_models/v2_tim_group_member_info_result.dart';
 import 'package:tencent_cloud_chat_sdk/models/v2_tim_group_member_search_param.dart'
-    if (dart.library.html) 'package:tencent_cloud_chat_sdk/web/compatible_models/v2_tim_group_member_search_param.dart';
+  if (dart.library.html) 'package:tencent_cloud_chat_sdk/web/compatible_models/v2_tim_group_member_search_param.dart';
 import 'package:tencent_cloud_chat_sdk/models/v2_tim_group_search_param.dart'
-    if (dart.library.html) 'package:tencent_cloud_chat_sdk/web/compatible_models/v2_tim_group_search_param.dart';
+  if (dart.library.html) 'package:tencent_cloud_chat_sdk/web/compatible_models/v2_tim_group_search_param.dart';
 import 'package:tencent_cloud_chat_sdk/models/v2_tim_group_search_result.dart'
-    if (dart.library.html) 'package:tencent_cloud_chat_sdk/web/compatible_models/v2_tim_group_search_result.dart';
+  if (dart.library.html) 'package:tencent_cloud_chat_sdk/web/compatible_models/v2_tim_group_search_result.dart';
 import 'package:tencent_cloud_chat_sdk/models/v2_tim_value_callback.dart'
-    if (dart.library.html) 'package:tencent_cloud_chat_sdk/web/compatible_models/v2_tim_value_callback.dart';
+  if (dart.library.html) 'package:tencent_cloud_chat_sdk/web/compatible_models/v2_tim_value_callback.dart';
 import 'package:tencent_cloud_chat_sdk/tencent_im_sdk_plugin.dart';
 import 'package:tencent_cloud_chat_sdk_example/utils/log_manager.dart';
 import 'base_api_test.dart';
@@ -67,1137 +67,1137 @@ class _GroupAPITestState extends State<GroupAPITest> {
   bool _isSearchMemberRemark = true;
   bool _isSearchMemberNameCard = true;
 
-  // 使用全局日志管理器
+  // Using global log manager
   final LogManager _logManager = LogManager();
 
   @override
   void initState() {
-    super.initState();
-    _groupIDController.text = 'public15';
-    _groupNameController.text = '群组测试名称';
-    _nameCardController.text = '群名片修改测试';
+  super.initState();
+  _groupIDController.text = 'public15';
+  _groupNameController.text = 'Group test name';
+  _nameCardController.text = 'Group name cardModifytest';
   }
 
-  // 添加日志的帮助方法
+  // Helper method for adding logs
   void _addLog(String log) {
-    _logManager.updateLogText(log);
+  _logManager.updateLogText(log);
   }
 
-  // 清空日志
+  // Clear log
   void _clearLog() {
-    _logManager.clearAllLogs();
+  _logManager.clearAllLogs();
   }
 
-  // 创建群组
+  // CreateGroup
   Future<void> _createGroup() async {
-    if (_groupIDController.text.isEmpty || _groupTypeController.text.isEmpty || _groupNameController.text.isEmpty) {
-      _addLog('请输入群组ID、群组类型和群组名称');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().createGroup(
-        groupID: _groupIDController.text,
-        groupType: _groupTypeController.text,
-        groupName: _groupNameController.text,
-        notification: _notificationController.text.isEmpty ? null : _notificationController.text,
-        introduction: _introductionController.text.isEmpty ? null : _introductionController.text,
-        faceUrl: _faceUrlController.text.isEmpty ? null : _faceUrlController.text,
-        isAllMuted: _isAllMutedController.text == 'true',
-        isSupportTopic: _isSupportTopicController.text == 'true',
-        addOpt: GroupAddOptTypeEnum.values[int.parse(_addOptController.text)],
-        memberList: _userIDListController.text.isEmpty ? null : _userIDListController.text.split(',').map((e) => V2TimGroupMember(userID: e, role: GroupMemberRoleTypeEnum.V2TIM_GROUP_MEMBER_ROLE_MEMBER)).toList(),
-        approveOpt: GroupAddOptTypeEnum.values[int.parse(_approveOptController.text)],
-        isEnablePermissionGroup: _isEnablePermissionGroupController.text == 'true',
-        defaultPermissions: _defaultPermissionsController.text.isEmpty ? null : int.parse(_defaultPermissionsController.text),
-      );
-      _addLog('创建群组成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('创建群组失败: $e');
-    }
+  if (_groupIDController.text.isEmpty || _groupTypeController.text.isEmpty || _groupNameController.text.isEmpty) {
+  _addLog('Please enterGroupID, Group typeandGroup name');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().createGroup(
+  groupID: _groupIDController.text,
+  groupType: _groupTypeController.text,
+  groupName: _groupNameController.text,
+  notification: _notificationController.text.isEmpty ? null : _notificationController.text,
+  introduction: _introductionController.text.isEmpty ? null : _introductionController.text,
+  faceUrl: _faceUrlController.text.isEmpty ? null : _faceUrlController.text,
+  isAllMuted: _isAllMutedController.text == 'true',
+  isSupportTopic: _isSupportTopicController.text == 'true',
+  addOpt: GroupAddOptTypeEnum.values[int.parse(_addOptController.text)],
+  memberList: _userIDListController.text.isEmpty ? null : _userIDListController.text.split(',').map((e) => V2TimGroupMember(userID: e, role: GroupMemberRoleTypeEnum.V2TIM_GROUP_MEMBER_ROLE_MEMBER)).toList(),
+  approveOpt: GroupAddOptTypeEnum.values[int.parse(_approveOptController.text)],
+  isEnablePermissionGroup: _isEnablePermissionGroupController.text == 'true',
+  defaultPermissions: _defaultPermissionsController.text.isEmpty ? null : int.parse(_defaultPermissionsController.text),
+  );
+  _addLog('CreateGroupsuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('CreateGroupfailed: $e');
+  }
   }
 
-  // 初始化群属性
+  // Initialize group attribute
   Future<void> _initGroupAttributes() async {
-    if (_groupIDController.text.isEmpty) {
-      _addLog('请输入群组ID');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().initGroupAttributes(
-        groupID: _groupIDController.text,
-        attributes: {
-          'key1': 'value1',
-          'key2': 'value2',
-        },
-      );
-      _addLog('初始化群属性: ${result.toJson()}');
-    } catch (e) {
-      _addLog('初始化群属性失败: $e');
-    }
+  if (_groupIDController.text.isEmpty) {
+  _addLog('Please enterGroupID');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().initGroupAttributes(
+  groupID: _groupIDController.text,
+  attributes: {
+  'key1': 'value1',
+  'key2': 'value2',
+  },
+  );
+  _addLog('Initialize group attribute: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Initialize group attributefailed: $e');
+  }
   }
 
-  // 设置群属性
+  // Set group attribute
   Future<void> _setGroupAttributes() async {
-    if (_groupIDController.text.isEmpty) {
-      _addLog('请输入群组ID');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().setGroupAttributes(
-        groupID: _groupIDController.text,
-        attributes: {
-          'key1': 'value1',
-          'key2': 'value2',
-        },
-      );
-      _addLog('设置群属性: ${result.toJson()}');
-    } catch (e) {
-      _addLog('设置群属性失败: $e');
-    }
+  if (_groupIDController.text.isEmpty) {
+  _addLog('Please enterGroupID');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().setGroupAttributes(
+  groupID: _groupIDController.text,
+  attributes: {
+  'key1': 'value1',
+  'key2': 'value2',
+  },
+  );
+  _addLog('Set group attribute: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Set group attributefailed: $e');
+  }
   }
 
-  // 删除群属性
+  // Delete group attribute
   Future<void> _deleteGroupAttributes() async {
-    if (_groupIDController.text.isEmpty) {
-      _addLog('请输入群组ID');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().deleteGroupAttributes(
-        groupID: _groupIDController.text,
-        keys: ['key1', 'key2'],
-      );
-      _addLog('删除群属性: ${result.toJson()}');
-    } catch (e) {
-      _addLog('删除群属性失败: $e');
-    }
+  if (_groupIDController.text.isEmpty) {
+  _addLog('Please enterGroupID');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().deleteGroupAttributes(
+  groupID: _groupIDController.text,
+  keys: ['key1', 'key2'],
+  );
+  _addLog('Delete group attribute: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Delete group attributefailed: $e');
+  }
   }
 
-  // 获取群属性
+  // Get group attribute
   Future<void> _getGroupAttributes() async {
-    if (_groupIDController.text.isEmpty) {
-      _addLog('请输入群组ID');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().getGroupAttributes(
-        groupID: _groupIDController.text,
-        keys: ['key1', 'key2'],
-      );
-      _addLog('获取群属性: ${result.toJson()}');
-    } catch (e) {
-      _addLog('获取群属性失败: $e');
-    }
+  if (_groupIDController.text.isEmpty) {
+  _addLog('Please enterGroupID');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().getGroupAttributes(
+  groupID: _groupIDController.text,
+  keys: ['key1', 'key2'],
+  );
+  _addLog('Get group attribute: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Get group attributefailed: $e');
+  }
   }
 
-  // 获取群成员列表
+  // Get group member list
   Future<void> _getGroupMemberList() async {
-    if (_groupIDController.text.isEmpty) {
-      _addLog('请输入群组ID');
-      return;
-    }
-    try {
-      V2TimValueCallback<V2TimGroupMemberInfoResult> result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().getGroupMemberList(
-        groupID: _groupIDController.text,
-        filter: GroupMemberFilterTypeEnum.V2TIM_GROUP_MEMBER_FILTER_ALL,
-        // filter: GroupMemberFilterTypeEnum.V2TIM_GROUP_MEMBER_FILTER_OWNER,
-        nextSeq: _nextSeqController.text.isEmpty ? "0" : _nextSeqController.text,
-        count: _countController.text.isEmpty ? 30 : int.parse(_countController.text),
-        offset: _offsetController.text.isEmpty ? 0 : int.parse(_offsetController.text),
-      );
+  if (_groupIDController.text.isEmpty) {
+  _addLog('Please enterGroupID');
+  return;
+  }
+  try {
+  V2TimValueCallback<V2TimGroupMemberInfoResult> result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().getGroupMemberList(
+  groupID: _groupIDController.text,
+  filter: GroupMemberFilterTypeEnum.V2TIM_GROUP_MEMBER_FILTER_ALL,
+  // filter: GroupMemberFilterTypeEnum.V2TIM_GROUP_MEMBER_FILTER_OWNER,
+  nextSeq: _nextSeqController.text.isEmpty ? "0" : _nextSeqController.text,
+  count: _countController.text.isEmpty ? 30 : int.parse(_countController.text),
+  offset: _offsetController.text.isEmpty ? 0 : int.parse(_offsetController.text),
+  );
 
-      if (result.code == 0) {
-        String groupMemberListLog = 'nextSeq: ${result.data?.nextSeq}\n';
-        for (V2TimGroupMemberFullInfo memberFullInfo in result.data?.memberInfoList ?? [])  {
-          groupMemberListLog += 'memberFullInfo: ${memberFullInfo.toJson()}\n\n';
-        }
-        _addLog('获取群成员列表: $groupMemberListLog');
-      } else {
-        _addLog('获取群成员列表失败: ${result.toJson()}');
-      }
-    } catch (e) {
-      _addLog('获取群成员列表失败: $e');
-    }
+  if (result.code == 0) {
+  String groupMemberListLog = 'nextSeq: ${result.data?.nextSeq}\n';
+  for (V2TimGroupMemberFullInfo memberFullInfo in result.data?.memberInfoList ?? [])  {
+  groupMemberListLog += 'memberFullInfo: ${memberFullInfo.toJson()}\n\n';
+  }
+  _addLog('Get group member list: $groupMemberListLog');
+  } else {
+  _addLog('Get group member listfailed: ${result.toJson()}');
+  }
+  } catch (e) {
+  _addLog('Get group member listfailed: $e');
+  }
   }
 
-  // 获取群成员资料
+  // Get group member profile
   Future<void> _getGroupMembersInfo() async {
-    if (_groupIDController.text.isEmpty || _userIDListController.text.isEmpty) {
-      _addLog('请输入群组ID和成员ID列表');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().getGroupMembersInfo(
-        groupID: _groupIDController.text,
-        memberList: _userIDListController.text.split(','),
-      );
-      _addLog('获取群成员资料成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('获取群成员资料失败: $e');
-    }
+  if (_groupIDController.text.isEmpty || _userIDListController.text.isEmpty) {
+  _addLog('Please enterGroupIDand member ID list');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().getGroupMembersInfo(
+  groupID: _groupIDController.text,
+  memberList: _userIDListController.text.split(','),
+  );
+  _addLog('Get group member profilesuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Get group member profilefailed: $e');
+  }
   }
 
-  // 修改群成员资料
+  // Modify group member profile
   Future<void> _setGroupMemberInfo() async {
-    if (_groupIDController.text.isEmpty || _userIDController.text.isEmpty) {
-      _addLog('请输入群组ID和用户ID');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().setGroupMemberInfo(
-        groupID: _groupIDController.text,
-        userID: _userIDController.text,
-        nameCard: _nameCardController.text.isEmpty ? null : _nameCardController.text,
-        customInfo: {'group_member_p': 'value1', 'group_member_p2': 'value2'},
-      );
-      _addLog('修改群成员资料成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('修改群成员资料失败: $e');
-    }
+  if (_groupIDController.text.isEmpty || _userIDController.text.isEmpty) {
+  _addLog('Please enterGroupIDandUserID');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().setGroupMemberInfo(
+  groupID: _groupIDController.text,
+  userID: _userIDController.text,
+  nameCard: _nameCardController.text.isEmpty ? null : _nameCardController.text,
+  customInfo: {'group_member_p': 'value1', 'group_member_p2': 'value2'},
+  );
+  _addLog('Modify group member profilesuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Modify group member profilefailed: $e');
+  }
   }
 
-  // 禁言群成员
+  // Mute group member
   Future<void> _muteGroupMember() async {
-    if (_groupIDController.text.isEmpty || _userIDController.text.isEmpty || _secondsController.text.isEmpty) {
-      _addLog('请输入群组ID、用户ID和禁言时长');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().muteGroupMember(
-        groupID: _groupIDController.text,
-        userID: _userIDController.text,
-        seconds: int.parse(_secondsController.text),
-      );
-      _addLog('禁言群成员成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('禁言群成员失败: $e');
-    }
+  if (_groupIDController.text.isEmpty || _userIDController.text.isEmpty || _secondsController.text.isEmpty) {
+  _addLog('Please enterGroupID, UserIDandMute duration');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().muteGroupMember(
+  groupID: _groupIDController.text,
+  userID: _userIDController.text,
+  seconds: int.parse(_secondsController.text),
+  );
+  _addLog('Mute group membersuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Mute group memberfailed: $e');
+  }
   }
 
-  // 邀请他人入群
+  // Invite others to join group
   Future<void> _inviteUserToGroup() async {
-    if (_groupIDController.text.isEmpty || _userIDListController.text.isEmpty) {
-      _addLog('请输入群组ID和用户ID列表');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().inviteUserToGroup(
-        groupID: _groupIDController.text,
-        userList: _userIDListController.text.split(','),
-      );
-      _addLog('邀请他人入群成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('邀请他人入群失败: $e');
-    }
+  if (_groupIDController.text.isEmpty || _userIDListController.text.isEmpty) {
+  _addLog('Please enterGroupIDandUser ID list');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().inviteUserToGroup(
+  groupID: _groupIDController.text,
+  userList: _userIDListController.text.split(','),
+  );
+  _addLog('Invite others to join groupsuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Invite others to join groupfailed: $e');
+  }
   }
 
-  // 踢人
+  // Kick
   Future<void> _kickGroupMember() async {
-    if (_groupIDController.text.isEmpty || _userIDListController.text.isEmpty) {
-      _addLog('请输入群组ID和用户ID列表');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().kickGroupMember(
-        groupID: _groupIDController.text,
-        memberList: _userIDListController.text.split(','),
-        reason: _reasonController.text.isEmpty ? null : _reasonController.text,
-      );
-      _addLog('踢人成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('踢人失败: $e');
-    }
+  if (_groupIDController.text.isEmpty || _userIDListController.text.isEmpty) {
+  _addLog('Please enterGroupIDandUser ID list');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().kickGroupMember(
+  groupID: _groupIDController.text,
+  memberList: _userIDListController.text.split(','),
+  reason: _reasonController.text.isEmpty ? null : _reasonController.text,
+  );
+  _addLog('Kick success: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Kick failed: $e');
+  }
   }
 
-  // 设置群成员角色
+  // Set group member role
   Future<void> _setGroupMemberRole() async {
-    if (_groupIDController.text.isEmpty || _userIDController.text.isEmpty || _roleController.text.isEmpty) {
-      _addLog('请输入群组ID、用户ID和角色');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().setGroupMemberRole(
-        groupID: _groupIDController.text,
-        userID: _userIDController.text,
-        role: GroupMemberRoleTypeEnum.values[int.parse(_roleController.text)],
-      );
-      _addLog('设置群成员角色成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('设置群成员角色失败: $e');
-    }
+  if (_groupIDController.text.isEmpty || _userIDController.text.isEmpty || _roleController.text.isEmpty) {
+  _addLog('Please enterGroupID, User ID and role');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().setGroupMemberRole(
+  groupID: _groupIDController.text,
+  userID: _userIDController.text,
+  role: GroupMemberRoleTypeEnum.values[int.parse(_roleController.text)],
+  );
+  _addLog('Set group member rolesuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Set group member rolefailed: $e');
+  }
   }
 
-  // 转让群主
+  // Transfer group owner
   Future<void> _transferGroupOwner() async {
-    if (_groupIDController.text.isEmpty || _userIDController.text.isEmpty) {
-      _addLog('请输入群组ID和用户ID');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().transferGroupOwner(
-        groupID: _groupIDController.text,
-        userID: _userIDController.text,
-      );
-      _addLog('转让群主成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('转让群主失败: $e');
-    }
+  if (_groupIDController.text.isEmpty || _userIDController.text.isEmpty) {
+  _addLog('Please enterGroupIDandUserID');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().transferGroupOwner(
+  groupID: _groupIDController.text,
+  userID: _userIDController.text,
+  );
+  _addLog('Transfer group ownersuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Transfer group ownerfailed: $e');
+  }
   }
 
-  // 标记群成员
+  // Mark group member
   Future<void> _markGroupMemberList() async {
-    if (_groupIDController.text.isEmpty || _userIDController.text.isEmpty) {
-      _addLog('请输入群组ID和用户ID');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().markGroupMemberList(
-        groupID: _groupIDController.text,
-        memberIDList: [_userIDController.text],
-        markType: 1001,
-        enableMark: true,
-      );
-      _addLog('标记群成员成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('标记群成员失败: $e');
-    }
+  if (_groupIDController.text.isEmpty || _userIDController.text.isEmpty) {
+  _addLog('Please enterGroupIDandUserID');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().markGroupMemberList(
+  groupID: _groupIDController.text,
+  memberIDList: [_userIDController.text],
+  markType: 1001,
+  enableMark: true,
+  );
+  _addLog('Mark group membersuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Mark group memberfailed: $e');
+  }
   }
 
-  // 接受加群申请
+  // Accept group join application
   Future<void> _acceptGroupApplication() async {
-    if (_groupIDController.text.isEmpty || _fromUserController.text.isEmpty || _toUserController.text.isEmpty || _addTimeController.text.isEmpty || _typeController.text.isEmpty) {
-      _addLog('请输入群组ID、请求者ID、处理者ID、添加时间和申请类型');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().acceptGroupApplication(
-        groupID: _groupIDController.text,
-        fromUser: _fromUserController.text,
-        toUser: _toUserController.text,
-        addTime: int.parse(_addTimeController.text),
-        type: GroupApplicationTypeEnum.values[int.parse(_typeController.text)],
-        reason: _reasonController.text.isEmpty ? null : _reasonController.text,
-      );
-      _addLog('接受加群申请成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('接受加群申请失败: $e');
-    }
+  if (_groupIDController.text.isEmpty || _fromUserController.text.isEmpty || _toUserController.text.isEmpty || _addTimeController.text.isEmpty || _typeController.text.isEmpty) {
+  _addLog('Please enterGroupID, RequesterID, HandlerID, Add time and apply type');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().acceptGroupApplication(
+  groupID: _groupIDController.text,
+  fromUser: _fromUserController.text,
+  toUser: _toUserController.text,
+  addTime: int.parse(_addTimeController.text),
+  type: GroupApplicationTypeEnum.values[int.parse(_typeController.text)],
+  reason: _reasonController.text.isEmpty ? null : _reasonController.text,
+  );
+  _addLog('Accept group join applicationsuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Accept group join applicationfailed: $e');
+  }
   }
 
-  // 拒绝加群申请
+  // Reject group join application
   Future<void> _refuseGroupApplication() async {
-    if (_groupIDController.text.isEmpty || _fromUserController.text.isEmpty || _toUserController.text.isEmpty || _addTimeController.text.isEmpty || _typeController.text.isEmpty) {
-      _addLog('请输入群组ID、请求者ID、处理者ID、添加时间和申请类型');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().refuseGroupApplication(
-        groupID: _groupIDController.text,
-        fromUser: _fromUserController.text,
-        toUser: _toUserController.text,
-        addTime: int.parse(_addTimeController.text),
-        type: GroupApplicationTypeEnum.values[int.parse(_typeController.text)],
-        reason: _reasonController.text.isEmpty ? null : _reasonController.text,
-      );
-      _addLog('拒绝加群申请成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('拒绝加群申请失败: $e');
-    }
+  if (_groupIDController.text.isEmpty || _fromUserController.text.isEmpty || _toUserController.text.isEmpty || _addTimeController.text.isEmpty || _typeController.text.isEmpty) {
+  _addLog('Please enterGroupID, RequesterID, HandlerID, Add time and apply type');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().refuseGroupApplication(
+  groupID: _groupIDController.text,
+  fromUser: _fromUserController.text,
+  toUser: _toUserController.text,
+  addTime: int.parse(_addTimeController.text),
+  type: GroupApplicationTypeEnum.values[int.parse(_typeController.text)],
+  reason: _reasonController.text.isEmpty ? null : _reasonController.text,
+  );
+  _addLog('Reject group join applicationsuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Reject group join applicationfailed: $e');
+  }
   }
 
-  // 获取已加入的群组列表
+  // Get joined group list
   Future<void> _getJoinedGroupList() async {
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().getJoinedGroupList();
-      _addLog('获取已加入的群组列表成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('获取已加入的群组列表失败: $e');
-    }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().getJoinedGroupList();
+  _addLog('Get joined group listsuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Get joined group listfailed: $e');
+  }
   }
 
-  // 获取群组信息
+  // Get group info
   Future<void> _getGroupsInfo() async {
-    if (_groupIDController.text.isEmpty) {
-      _addLog('请输入群组ID');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().getGroupsInfo(
-        groupIDList: [_groupIDController.text],
-      );
-      _addLog('获取群组信息: ${result.toJson()}');
-    } catch (e) {
-      _addLog('获取群组信息失败: $e');
-    }
+  if (_groupIDController.text.isEmpty) {
+  _addLog('Please enterGroupID');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().getGroupsInfo(
+  groupIDList: [_groupIDController.text],
+  );
+  _addLog('Get group info: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Get group infofailed: $e');
+  }
   }
 
-  // 设置群组信息
+  // Set group info
   Future<void> _setGroupInfo() async {
-    if (_groupIDController.text.isEmpty) {
-      _addLog('请输入群组ID');
-      return;
-    }
-    try {
-      final info = V2TimGroupInfo(
-        groupID: _groupIDController.text,
-        groupType: _groupTypeController.text.isEmpty ? "Public" : _groupTypeController.text,
-        groupName: _groupNameController.text,
-        introduction: _groupIntroductionController.text.isEmpty ? null : _groupIntroductionController.text,
-        notification: _groupNotificationController.text.isEmpty ? null : _groupNotificationController.text,
-        faceUrl: _groupFaceURLController.text.isEmpty ? null : _groupFaceURLController.text,
-        customInfo: {'group_test': 'value1', 'group_info': 'value2'},
-      );
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().setGroupInfo(
-        info: info,
-      );
-      _addLog('设置群组信息: ${result.toJson()}');
-    } catch (e) {
-      _addLog('设置群组信息失败: $e');
-    }
+  if (_groupIDController.text.isEmpty) {
+  _addLog('Please enterGroupID');
+  return;
+  }
+  try {
+  final info = V2TimGroupInfo(
+  groupID: _groupIDController.text,
+  groupType: _groupTypeController.text.isEmpty ? "Public" : _groupTypeController.text,
+  groupName: _groupNameController.text,
+  introduction: _groupIntroductionController.text.isEmpty ? null : _groupIntroductionController.text,
+  notification: _groupNotificationController.text.isEmpty ? null : _groupNotificationController.text,
+  faceUrl: _groupFaceURLController.text.isEmpty ? null : _groupFaceURLController.text,
+  customInfo: {'group_test': 'value1', 'group_info': 'value2'},
+  );
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().setGroupInfo(
+  info: info,
+  );
+  _addLog('Set group info: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Set group infofailed: $e');
+  }
   }
 
-  // 获取群组在线人数
+  // Get group online count
   Future<void> _getGroupOnlineMemberCount() async {
-    if (_groupIDController.text.isEmpty) {
-      _addLog('请输入群组ID');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().getGroupOnlineMemberCount(
-        groupID: _groupIDController.text,
-      );
-      _addLog('获取群组在线人数: ${result.toJson()}');
-    } catch (e) {
-      _addLog('获取群组在线人数失败: $e');
-    }
+  if (_groupIDController.text.isEmpty) {
+  _addLog('Please enterGroupID');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().getGroupOnlineMemberCount(
+  groupID: _groupIDController.text,
+  );
+  _addLog('Get group online count: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Get group online countfailed: $e');
+  }
   }
 
-  // 获取群组申请列表
+  // Get group application list
   Future<void> _getGroupApplicationList() async {
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().getGroupApplicationList();
-      _addLog('获取群组申请列表成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('获取群组申请列表失败: $e');
-    }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().getGroupApplicationList();
+  _addLog('Get group application listsuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Get group application listfailed: $e');
+  }
   }
 
-  // 标记群组申请为已读
+  // Mark group application as read
   Future<void> _setGroupApplicationRead() async {
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().setGroupApplicationRead();
-      _addLog('标记群组申请为已读成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('标记群组申请为已读失败: $e');
-    }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().setGroupApplicationRead();
+  _addLog('Mark group application as readsuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Mark group application as readfailed: $e');
+  }
   }
 
-  // 搜索群组
+  // Search group
   Future<void> _searchGroups() async {
-    if (_groupNameController.text.isEmpty) {
-      _addLog('请输入群组名称');
-      return;
-    }
-    try {
-      final searchParam = V2TimGroupSearchParam(
-        keywordList: [_groupNameController.text],
-        isSearchGroupID: _isSearchGroupID,
-        isSearchGroupName: _isSearchGroupName,
-      );
-      V2TimValueCallback<List<V2TimGroupInfo>> result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().searchGroups(
-        searchParam: searchParam,
-      );
-      if (result.code == 0) {
-        String groupLog = '';
-        for (V2TimGroupInfo groupInfo in result.data ?? [])  {
-          groupLog += '${groupInfo.toLogString()}\n\n';
-        }
-        _addLog('搜索群组: $groupLog');
-      } else {
-        _addLog('搜索群组失败，code: ${result.code} desc: ${result.desc}');
-      }
-    } catch (e) {
-      _addLog('搜索群组失败: $e');
-    }
+  if (_groupNameController.text.isEmpty) {
+  _addLog('Please enterGroup name');
+  return;
+  }
+  try {
+  final searchParam = V2TimGroupSearchParam(
+  keywordList: [_groupNameController.text],
+  isSearchGroupID: _isSearchGroupID,
+  isSearchGroupName: _isSearchGroupName,
+  );
+  V2TimValueCallback<List<V2TimGroupInfo>> result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().searchGroups(
+  searchParam: searchParam,
+  );
+  if (result.code == 0) {
+  String groupLog = '';
+  for (V2TimGroupInfo groupInfo in result.data ?? [])  {
+  groupLog += '${groupInfo.toLogString()}\n\n';
+  }
+  _addLog('Search group: $groupLog');
+  } else {
+  _addLog('Search groupfailed，code: ${result.code} desc: ${result.desc}');
+  }
+  } catch (e) {
+  _addLog('Search groupfailed: $e');
+  }
   }
 
-  // 搜索群组
+  // Search group
   Future<void> _searchCloudGroups() async {
-    if (_groupNameController.text.isEmpty) {
-      _addLog('请输入群组名称');
-      return;
-    }
-    try {
-      final searchParam = V2TimGroupSearchParam(
-        keywordList: [_groupNameController.text],
-        keywordListMatchType: V2TimGroupSearchParam.V2TIM_KEYWORD_LIST_MATCH_TYPE_AND,
-        searchCount: 20,
-        searchCursor: "",
-      );
+  if (_groupNameController.text.isEmpty) {
+  _addLog('Please enterGroup name');
+  return;
+  }
+  try {
+  final searchParam = V2TimGroupSearchParam(
+  keywordList: [_groupNameController.text],
+  keywordListMatchType: V2TimGroupSearchParam.V2TIM_KEYWORD_LIST_MATCH_TYPE_AND,
+  searchCount: 20,
+  searchCursor: "",
+  );
 
-      V2TimValueCallback<V2TimGroupSearchResult> result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().searchCloudGroups(
-        searchParam: searchParam,
-      );
-      if (result.code == 0) {
-        String groupLog = 'isFinished: ${result.data?.isFinished}, totalCount: ${result.data?.totalCount}, searchCursor: ${result.data?.nextCursor}\n';
-        for (V2TimGroupInfo groupInfo in result.data?.groupList ?? [])  {
-          groupLog += '${groupInfo.toLogString()}\n\n';
-        }
-        _addLog('_searchCloudGroups: $groupLog');
-      } else {
-        _addLog('_searchCloudGroups failed，code: ${result.code} desc: ${result.desc}');
-      }
-    } catch (e) {
-      _addLog('_searchCloudGroups failed: $e');
-    }
+  V2TimValueCallback<V2TimGroupSearchResult> result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().searchCloudGroups(
+  searchParam: searchParam,
+  );
+  if (result.code == 0) {
+  String groupLog = 'isFinished: ${result.data?.isFinished}, totalCount: ${result.data?.totalCount}, searchCursor: ${result.data?.nextCursor}\n';
+  for (V2TimGroupInfo groupInfo in result.data?.groupList ?? [])  {
+  groupLog += '${groupInfo.toLogString()}\n\n';
+  }
+  _addLog('_searchCloudGroups: $groupLog');
+  } else {
+  _addLog('_searchCloudGroups failed，code: ${result.code} desc: ${result.desc}');
+  }
+  } catch (e) {
+  _addLog('_searchCloudGroups failed: $e');
+  }
   }
 
-  // 搜索群成员
+  // Search group member
   Future<void> _searchGroupMembers() async {
-    if (_groupIDController.text.isEmpty || _userIDController.text.isEmpty) {
-      _addLog('请输入群组ID和用户ID');
-      return;
-    }
-    try {
-      final searchParam = V2TimGroupMemberSearchParam(
-        keywordList: [_userIDController.text],
-        groupIDList: [_groupIDController.text],
-        isSearchMemberUserID: _isSearchMemberUserID,
-        isSearchMemberNickName: _isSearchMemberNickName,
-        isSearchMemberRemark: _isSearchMemberRemark,
-        isSearchMemberNameCard: _isSearchMemberNameCard,
-      );
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().searchGroupMembers(
-        param: searchParam,
-      );
-      _addLog('搜索群成员: ${result.data?.toLogString()}');
-    } catch (e) {
-      _addLog('搜索群成员失败: $e');
-    }
+  if (_groupIDController.text.isEmpty || _userIDController.text.isEmpty) {
+  _addLog('Please enterGroupIDandUserID');
+  return;
+  }
+  try {
+  final searchParam = V2TimGroupMemberSearchParam(
+  keywordList: [_userIDController.text],
+  groupIDList: [_groupIDController.text],
+  isSearchMemberUserID: _isSearchMemberUserID,
+  isSearchMemberNickName: _isSearchMemberNickName,
+  isSearchMemberRemark: _isSearchMemberRemark,
+  isSearchMemberNameCard: _isSearchMemberNameCard,
+  );
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().searchGroupMembers(
+  param: searchParam,
+  );
+  _addLog('Search group member: ${result.data?.toLogString()}');
+  } catch (e) {
+  _addLog('Search group memberfailed: $e');
+  }
   }
 
-  // 搜索云端群成员
+  // Search cloud group members
   Future<void> _searchCloudGroupMembers() async {
-    if (_groupIDController.text.isEmpty || _userIDController.text.isEmpty) {
-      _addLog('请输入群组ID和用户ID');
-      return;
-    }
-    try {
-      final searchParam = V2TimGroupMemberSearchParam(
-        keywordList: [_userIDController.text],
-        groupIDList: [_groupIDController.text],
-        keywordListMatchType: V2TimGroupMemberSearchParam.V2TIM_KEYWORD_LIST_MATCH_TYPE_AND,
-        searchCount: 2,
-        searchCursor: "",
-      );
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().searchCloudGroupMembers(
-        param: searchParam,
-      );
+  if (_groupIDController.text.isEmpty || _userIDController.text.isEmpty) {
+  _addLog('Please enterGroupIDandUserID');
+  return;
+  }
+  try {
+  final searchParam = V2TimGroupMemberSearchParam(
+  keywordList: [_userIDController.text],
+  groupIDList: [_groupIDController.text],
+  keywordListMatchType: V2TimGroupMemberSearchParam.V2TIM_KEYWORD_LIST_MATCH_TYPE_AND,
+  searchCount: 2,
+  searchCursor: "",
+  );
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().searchCloudGroupMembers(
+  param: searchParam,
+  );
 
-      if (result.code == 0) {
-        String groupLog = 'isFinished: ${result.data?.isFinished}, totalCount: ${result.data?.totalCount}, searchCursor: ${result.data?.nextCursor}\n';
-        result.data?.groupMemberSearchResultItems?.forEach((groupId, memberList) {
-          groupLog += '群组ID: $groupId, 成员数量: ${memberList.length}, 成员信息: \n';
-          // 遍历每个成员
-          for (V2TimGroupMemberFullInfo member in memberList) {
-            groupLog += '${member.toLogString()}\n\n';
-          }
-          groupLog += '\n';
-        });
-        _addLog('_searchCloudGroups: $groupLog');
-      } else {
-        _addLog('_searchCloudGroups failed，code: ${result.code} desc: ${result.desc}');
-      }
-    } catch (e) {
-      _addLog('_searchCloudGroupMembers failed: $e');
-    }
+  if (result.code == 0) {
+  String groupLog = 'isFinished: ${result.data?.isFinished}, totalCount: ${result.data?.totalCount}, searchCursor: ${result.data?.nextCursor}\n';
+  result.data?.groupMemberSearchResultItems?.forEach((groupId, memberList) {
+  groupLog += 'GroupID: $groupId, Member count: ${memberList.length}, Member info: \n';
+  // Iterate each member
+  for (V2TimGroupMemberFullInfo member in memberList) {
+  groupLog += '${member.toLogString()}\n\n';
+  }
+  groupLog += '\n';
+  });
+  _addLog('_searchCloudGroups: $groupLog');
+  } else {
+  _addLog('_searchCloudGroups failed，code: ${result.code} desc: ${result.desc}');
+  }
+  } catch (e) {
+  _addLog('_searchCloudGroupMembers failed: $e');
+  }
   }
 
-  // 设置群计数器
+  // Set group counter
   Future<void> _setGroupCounters() async {
-    if (_groupIDController.text.isEmpty) {
-      _addLog('请输入群组ID');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().setGroupCounters(
-        groupID: _groupIDController.text,
-        counters: {
-          'counter1': 1,
-          'counter2': 2,
-        },
-      );
-      _addLog('设置群计数器成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('设置群计数器失败: $e');
-    }
+  if (_groupIDController.text.isEmpty) {
+  _addLog('Please enterGroupID');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().setGroupCounters(
+  groupID: _groupIDController.text,
+  counters: {
+  'counter1': 1,
+  'counter2': 2,
+  },
+  );
+  _addLog('Set group countersuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Set group counterfailed: $e');
+  }
   }
 
-  // 获取群计数器
+  // Get group counter
   Future<void> _getGroupCounters() async {
-    if (_groupIDController.text.isEmpty) {
-      _addLog('请输入群组ID');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().getGroupCounters(
-        groupID: _groupIDController.text,
-        keys: ['counter1', 'counter2'],
-      );
-      _addLog('获取群计数器成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('获取群计数器失败: $e');
-    }
+  if (_groupIDController.text.isEmpty) {
+  _addLog('Please enterGroupID');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().getGroupCounters(
+  groupID: _groupIDController.text,
+  keys: ['counter1', 'counter2'],
+  );
+  _addLog('Get group countersuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Get group counterfailed: $e');
+  }
   }
 
-  // 递增群计数器
+  // Increment group counter
   Future<void> _increaseGroupCounter() async {
-    if (_groupIDController.text.isEmpty) {
-      _addLog('请输入群组ID');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().increaseGroupCounter(
-        groupID: _groupIDController.text,
-        key: 'counter1',
-        value: 1,
-      );
-      _addLog('递增群计数器成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('递增群计数器失败: $e');
-    }
+  if (_groupIDController.text.isEmpty) {
+  _addLog('Please enterGroupID');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().increaseGroupCounter(
+  groupID: _groupIDController.text,
+  key: 'counter1',
+  value: 1,
+  );
+  _addLog('Increment group countersuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Increment group counterfailed: $e');
+  }
   }
 
-  // 递减群计数器
+  // Decrement group counter
   Future<void> _decreaseGroupCounter() async {
-    if (_groupIDController.text.isEmpty) {
-      _addLog('请输入群组ID');
-      return;
-    }
-    try {
-      final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().decreaseGroupCounter(
-        groupID: _groupIDController.text,
-        key: 'counter1',
-        value: 1,
-      );
-      _addLog('递减群计数器成功: ${result.toJson()}');
-    } catch (e) {
-      _addLog('递减群计数器失败: $e');
-    }
+  if (_groupIDController.text.isEmpty) {
+  _addLog('Please enterGroupID');
+  return;
+  }
+  try {
+  final result = await TencentImSDKPlugin.v2TIMManager.getGroupManager().decreaseGroupCounter(
+  groupID: _groupIDController.text,
+  key: 'counter1',
+  value: 1,
+  );
+  _addLog('Decrement group countersuccess: ${result.toJson()}');
+  } catch (e) {
+  _addLog('Decrement group counterfailed: $e');
+  }
   }
 
   @override
   Widget build(BuildContext context) {
-    final inputFields = [
-      // 群组ID和群组名称
-      Row(
-        children: [
-          // 群组ID
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('群组ID:', style: TextStyle(fontSize: 12)),
-                SizedBox(
-                  height: 30,
-                  child: TextField(
-                    controller: _groupIDController,
-                    style: const TextStyle(fontSize: 13),
-                    decoration: const InputDecoration(
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 8),
-          // 群组名称
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('群组名称:', style: TextStyle(fontSize: 12)),
-                SizedBox(
-                  height: 30,
-                  child: TextField(
-                    controller: _groupNameController,
-                    style: const TextStyle(fontSize: 13),
-                    decoration: const InputDecoration(
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-      const SizedBox(height: 4),
+  final inputFields = [
+  // GroupIDandGroup name
+  Row(
+  children: [
+  // GroupID
+  Expanded(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  const Text('GroupID:', style: TextStyle(fontSize: 12)),
+  SizedBox(
+  height: 30,
+  child: TextField(
+  controller: _groupIDController,
+  style: const TextStyle(fontSize: 13),
+  decoration: const InputDecoration(
+  isDense: true,
+  contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+  border: OutlineInputBorder(),
+  ),
+  ),
+  ),
+  ],
+  ),
+  ),
+  const SizedBox(width: 8),
+  // Group name
+  Expanded(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  const Text('Group name:', style: TextStyle(fontSize: 12)),
+  SizedBox(
+  height: 30,
+  child: TextField(
+  controller: _groupNameController,
+  style: const TextStyle(fontSize: 13),
+  decoration: const InputDecoration(
+  isDense: true,
+  contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+  border: OutlineInputBorder(),
+  ),
+  ),
+  ),
+  ],
+  ),
+  ),
+  ],
+  ),
+  const SizedBox(height: 4),
 
-      // 搜索选项
-      Row(
-        children: [
-          Expanded(
-            child: CheckboxListTile(
-              title: const Text('搜索群ID', style: TextStyle(fontSize: 12)),
-              value: _isSearchGroupID,
-              onChanged: (bool? value) {
-                setState(() {
-                  _isSearchGroupID = value ?? true;
-                });
-              },
-              contentPadding: EdgeInsets.zero,
-            ),
-          ),
-          Expanded(
-            child: CheckboxListTile(
-              title: const Text('搜索群名称', style: TextStyle(fontSize: 12)),
-              value: _isSearchGroupName,
-              onChanged: (bool? value) {
-                setState(() {
-                  _isSearchGroupName = value ?? true;
-                });
-              },
-              contentPadding: EdgeInsets.zero,
-            ),
-          ),
-        ],
-      ),
+  // Search options
+  Row(
+  children: [
+  Expanded(
+  child: CheckboxListTile(
+  title: const Text('Search groupID', style: TextStyle(fontSize: 12)),
+  value: _isSearchGroupID,
+  onChanged: (bool? value) {
+  setState(() {
+  _isSearchGroupID = value ?? true;
+  });
+  },
+  contentPadding: EdgeInsets.zero,
+  ),
+  ),
+  Expanded(
+  child: CheckboxListTile(
+  title: const Text('Search group name', style: TextStyle(fontSize: 12)),
+  value: _isSearchGroupName,
+  onChanged: (bool? value) {
+  setState(() {
+  _isSearchGroupName = value ?? true;
+  });
+  },
+  contentPadding: EdgeInsets.zero,
+  ),
+  ),
+  ],
+  ),
 
-      // 群成员搜索选项
-      Row(
-        children: [
-          // 是否搜索群成员ID
-          Expanded(
-            child: CheckboxListTile(
-              title: const Text('搜索成员ID', style: TextStyle(fontSize: 12)),
-              value: _isSearchMemberUserID,
-              onChanged: (bool? value) {
-                setState(() {
-                  _isSearchMemberUserID = value ?? true;
-                });
-              },
-              contentPadding: EdgeInsets.zero,
-              dense: true,
-            ),
-          ),
-          // 是否搜索群成员昵称
-          Expanded(
-            child: CheckboxListTile(
-              title: const Text('搜索成员昵称', style: TextStyle(fontSize: 12)),
-              value: _isSearchMemberNickName,
-              onChanged: (bool? value) {
-                setState(() {
-                  _isSearchMemberNickName = value ?? true;
-                });
-              },
-              contentPadding: EdgeInsets.zero,
-              dense: true,
-            ),
-          ),
-        ],
-      ),
+  // Group member search options
+  Row(
+  children: [
+  // Whether to search group membersID
+  Expanded(
+  child: CheckboxListTile(
+  title: const Text('Search memberID', style: TextStyle(fontSize: 12)),
+  value: _isSearchMemberUserID,
+  onChanged: (bool? value) {
+  setState(() {
+  _isSearchMemberUserID = value ?? true;
+  });
+  },
+  contentPadding: EdgeInsets.zero,
+  dense: true,
+  ),
+  ),
+  // Whether to search member nickname
+  Expanded(
+  child: CheckboxListTile(
+  title: const Text('Search member nickname', style: TextStyle(fontSize: 12)),
+  value: _isSearchMemberNickName,
+  onChanged: (bool? value) {
+  setState(() {
+  _isSearchMemberNickName = value ?? true;
+  });
+  },
+  contentPadding: EdgeInsets.zero,
+  dense: true,
+  ),
+  ),
+  ],
+  ),
 
-      // 群成员搜索选项（续）
-      Row(
-        children: [
-          // 是否搜索群成员备注
-          Expanded(
-            child: CheckboxListTile(
-              title: const Text('搜索成员备注', style: TextStyle(fontSize: 12)),
-              value: _isSearchMemberRemark,
-              onChanged: (bool? value) {
-                setState(() {
-                  _isSearchMemberRemark = value ?? true;
-                });
-              },
-              contentPadding: EdgeInsets.zero,
-              dense: true,
-            ),
-          ),
-          // 是否搜索群成员名片
-          Expanded(
-            child: CheckboxListTile(
-              title: const Text('搜索成员名片', style: TextStyle(fontSize: 12)),
-              value: _isSearchMemberNameCard,
-              onChanged: (bool? value) {
-                setState(() {
-                  _isSearchMemberNameCard = value ?? true;
-                });
-              },
-              contentPadding: EdgeInsets.zero,
-              dense: true,
-            ),
-          ),
-        ],
-      ),
+  // Group member search options（Continue）
+  Row(
+  children: [
+  // Whether to search member remark
+  Expanded(
+  child: CheckboxListTile(
+  title: const Text('Search member remark', style: TextStyle(fontSize: 12)),
+  value: _isSearchMemberRemark,
+  onChanged: (bool? value) {
+  setState(() {
+  _isSearchMemberRemark = value ?? true;
+  });
+  },
+  contentPadding: EdgeInsets.zero,
+  dense: true,
+  ),
+  ),
+  // Whether to search member name card
+  Expanded(
+  child: CheckboxListTile(
+  title: const Text('Search member name card', style: TextStyle(fontSize: 12)),
+  value: _isSearchMemberNameCard,
+  onChanged: (bool? value) {
+  setState(() {
+  _isSearchMemberNameCard = value ?? true;
+  });
+  },
+  contentPadding: EdgeInsets.zero,
+  dense: true,
+  ),
+  ),
+  ],
+  ),
 
-      // 群组类型和用户ID列表
-      Row(
-        children: [
-          // 群组类型
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('群组类型:', style: TextStyle(fontSize: 12)),
-                SizedBox(
-                  height: 30,
-                  child: DropdownButtonFormField<String>(
-                    value: _groupTypeController.text.isEmpty ? null : _groupTypeController.text,
-                    decoration: const InputDecoration(
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      border: OutlineInputBorder(),
-                    ),
-                    items: const [
-                      DropdownMenuItem(value: 'Work', child: Text('Work', style: TextStyle(fontSize: 13))),
-                      DropdownMenuItem(value: 'Public', child: Text('Public', style: TextStyle(fontSize: 13))),
-                      DropdownMenuItem(value: 'Meeting', child: Text('Meeting', style: TextStyle(fontSize: 13))),
-                      DropdownMenuItem(value: 'Community', child: Text('Community', style: TextStyle(fontSize: 13))),
-                      DropdownMenuItem(value: 'AVChatRoom', child: Text('AVChatRoom', style: TextStyle(fontSize: 13))),
-                    ],
-                    onChanged: (value) {
-                      setState(() {
-                        _groupTypeController.text = value ?? '';
-                      });
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 8),
-          // 用户ID列表
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('用户ID列表:', style: TextStyle(fontSize: 12)),
-                SizedBox(
-                  height: 30,
-                  child: TextField(
-                    controller: _userIDListController,
-                    style: const TextStyle(fontSize: 13),
-                    decoration: const InputDecoration(
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      border: OutlineInputBorder(),
-                      hintText: '用逗号分隔',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-      const SizedBox(height: 4),
+  // Group typeandUser ID list
+  Row(
+  children: [
+  // Group type
+  Expanded(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  const Text('Group type:', style: TextStyle(fontSize: 12)),
+  SizedBox(
+  height: 30,
+  child: DropdownButtonFormField<String>(
+  value: _groupTypeController.text.isEmpty ? null : _groupTypeController.text,
+  decoration: const InputDecoration(
+  isDense: true,
+  contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+  border: OutlineInputBorder(),
+  ),
+  items: const [
+  DropdownMenuItem(value: 'Work', child: Text('Work', style: TextStyle(fontSize: 13))),
+  DropdownMenuItem(value: 'Public', child: Text('Public', style: TextStyle(fontSize: 13))),
+  DropdownMenuItem(value: 'Meeting', child: Text('Meeting', style: TextStyle(fontSize: 13))),
+  DropdownMenuItem(value: 'Community', child: Text('Community', style: TextStyle(fontSize: 13))),
+  DropdownMenuItem(value: 'AVChatRoom', child: Text('AVChatRoom', style: TextStyle(fontSize: 13))),
+  ],
+  onChanged: (value) {
+  setState(() {
+  _groupTypeController.text = value ?? '';
+  });
+  },
+  ),
+  ),
+  ],
+  ),
+  ),
+  const SizedBox(width: 8),
+  // User ID list
+  Expanded(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  const Text('User ID list:', style: TextStyle(fontSize: 12)),
+  SizedBox(
+  height: 30,
+  child: TextField(
+  controller: _userIDListController,
+  style: const TextStyle(fontSize: 13),
+  decoration: const InputDecoration(
+  isDense: true,
+  contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+  border: OutlineInputBorder(),
+  hintText: 'Separated by commas',
+  ),
+  ),
+  ),
+  ],
+  ),
+  ),
+  ],
+  ),
+  const SizedBox(height: 4),
 
-      // 群组简介和群组公告
-      Row(
-        children: [
-          // 群组简介
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('群组简介:', style: TextStyle(fontSize: 12)),
-                SizedBox(
-                  height: 30,
-                  child: TextField(
-                    controller: _groupIntroductionController,
-                    style: const TextStyle(fontSize: 13),
-                    decoration: const InputDecoration(
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 8),
-          // 群组公告
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('群组公告:', style: TextStyle(fontSize: 12)),
-                SizedBox(
-                  height: 30,
-                  child: TextField(
-                    controller: _groupNotificationController,
-                    style: const TextStyle(fontSize: 13),
-                    decoration: const InputDecoration(
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-      const SizedBox(height: 4),
+  // Group introductionandGroup announcement
+  Row(
+  children: [
+  // Group introduction
+  Expanded(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  const Text('Group introduction:', style: TextStyle(fontSize: 12)),
+  SizedBox(
+  height: 30,
+  child: TextField(
+  controller: _groupIntroductionController,
+  style: const TextStyle(fontSize: 13),
+  decoration: const InputDecoration(
+  isDense: true,
+  contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+  border: OutlineInputBorder(),
+  ),
+  ),
+  ),
+  ],
+  ),
+  ),
+  const SizedBox(width: 8),
+  // Group announcement
+  Expanded(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  const Text('Group announcement:', style: TextStyle(fontSize: 12)),
+  SizedBox(
+  height: 30,
+  child: TextField(
+  controller: _groupNotificationController,
+  style: const TextStyle(fontSize: 13),
+  decoration: const InputDecoration(
+  isDense: true,
+  contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+  border: OutlineInputBorder(),
+  ),
+  ),
+  ),
+  ],
+  ),
+  ),
+  ],
+  ),
+  const SizedBox(height: 4),
 
-      // 群组头像和群成员角色
-      Row(
-        children: [
-          // 群组头像
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('群组头像:', style: TextStyle(fontSize: 12)),
-                SizedBox(
-                  height: 30,
-                  child: TextField(
-                    controller: _groupFaceURLController,
-                    style: const TextStyle(fontSize: 13),
-                    decoration: const InputDecoration(
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 8),
-          // 群成员角色
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('群成员角色:', style: TextStyle(fontSize: 12)),
-                SizedBox(
-                  height: 30,
-                  child: TextField(
-                    controller: _roleController,
-                    style: const TextStyle(fontSize: 13),
-                    decoration: const InputDecoration(
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      border: OutlineInputBorder(),
-                      hintText: '0:普通成员 1:管理员 2:群主',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-      const SizedBox(height: 4),
+  // Group avatarandGroup member role
+  Row(
+  children: [
+  // Group avatar
+  Expanded(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  const Text('Group avatar:', style: TextStyle(fontSize: 12)),
+  SizedBox(
+  height: 30,
+  child: TextField(
+  controller: _groupFaceURLController,
+  style: const TextStyle(fontSize: 13),
+  decoration: const InputDecoration(
+  isDense: true,
+  contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+  border: OutlineInputBorder(),
+  ),
+  ),
+  ),
+  ],
+  ),
+  ),
+  const SizedBox(width: 8),
+  // Group member role
+  Expanded(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  const Text('Group member role:', style: TextStyle(fontSize: 12)),
+  SizedBox(
+  height: 30,
+  child: TextField(
+  controller: _roleController,
+  style: const TextStyle(fontSize: 13),
+  decoration: const InputDecoration(
+  isDense: true,
+  contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+  border: OutlineInputBorder(),
+  hintText: '0:Ordinary member 1:Administrator 2:Group owner',
+  ),
+  ),
+  ),
+  ],
+  ),
+  ),
+  ],
+  ),
+  const SizedBox(height: 4),
 
-      // 群成员ID和群名片输入框
-      Row(
-        children: [
-          // 群成员ID
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('群成员ID:', style: TextStyle(fontSize: 12)),
-                SizedBox(
-                  height: 30,
-                  child: TextField(
-                    controller: _userIDController,
-                    style: const TextStyle(fontSize: 13),
-                    decoration: const InputDecoration(
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      border: OutlineInputBorder(),
-                      hintText: '输入成员ID',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 8),
-          // 群名片
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('群名片:', style: TextStyle(fontSize: 12)),
-                SizedBox(
-                  height: 30,
-                  child: TextField(
-                    controller: _nameCardController,
-                    style: const TextStyle(fontSize: 13),
-                    decoration: const InputDecoration(
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      border: OutlineInputBorder(),
-                      hintText: '设置群名片',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-      const SizedBox(height: 4),
+  // Group memberIDandGroup name cardInput box
+  Row(
+  children: [
+  // Group memberID
+  Expanded(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  const Text('Group memberID:', style: TextStyle(fontSize: 12)),
+  SizedBox(
+  height: 30,
+  child: TextField(
+  controller: _userIDController,
+  style: const TextStyle(fontSize: 13),
+  decoration: const InputDecoration(
+  isDense: true,
+  contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+  border: OutlineInputBorder(),
+  hintText: 'Input memberID',
+  ),
+  ),
+  ),
+  ],
+  ),
+  ),
+  const SizedBox(width: 8),
+  // Group name card
+  Expanded(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  const Text('Group name card:', style: TextStyle(fontSize: 12)),
+  SizedBox(
+  height: 30,
+  child: TextField(
+  controller: _nameCardController,
+  style: const TextStyle(fontSize: 13),
+  decoration: const InputDecoration(
+  isDense: true,
+  contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+  border: OutlineInputBorder(),
+  hintText: 'Set group name card',
+  ),
+  ),
+  ),
+  ],
+  ),
+  ),
+  ],
+  ),
+  const SizedBox(height: 4),
 
-      // 禁言时长和原因输入框
-      Row(
-        children: [
-          // 禁言时长
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('禁言时长:', style: TextStyle(fontSize: 12)),
-                SizedBox(
-                  height: 30,
-                  child: TextField(
-                    controller: _secondsController,
-                    style: const TextStyle(fontSize: 13),
-                    decoration: const InputDecoration(
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      border: OutlineInputBorder(),
-                      hintText: '单位:秒',
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 8),
-          // 原因
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text('操作原因:', style: TextStyle(fontSize: 12)),
-                SizedBox(
-                  height: 30,
-                  child: TextField(
-                    controller: _reasonController,
-                    style: const TextStyle(fontSize: 13),
-                    decoration: const InputDecoration(
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                      border: OutlineInputBorder(),
-                      hintText: '踢人或处理申请原因',
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    ];
+  // Mute durationandReasonInput box
+  Row(
+  children: [
+  // Mute duration
+  Expanded(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  const Text('Mute duration:', style: TextStyle(fontSize: 12)),
+  SizedBox(
+  height: 30,
+  child: TextField(
+  controller: _secondsController,
+  style: const TextStyle(fontSize: 13),
+  decoration: const InputDecoration(
+  isDense: true,
+  contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+  border: OutlineInputBorder(),
+  hintText: 'Unit:seconds',
+  ),
+  keyboardType: TextInputType.number,
+  ),
+  ),
+  ],
+  ),
+  ),
+  const SizedBox(width: 8),
+  // Reason
+  Expanded(
+  child: Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+  const Text('Operation reason:', style: TextStyle(fontSize: 12)),
+  SizedBox(
+  height: 30,
+  child: TextField(
+  controller: _reasonController,
+  style: const TextStyle(fontSize: 13),
+  decoration: const InputDecoration(
+  isDense: true,
+  contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+  border: OutlineInputBorder(),
+  hintText: 'Reason for kicking or handling application',
+  ),
+  ),
+  ),
+  ],
+  ),
+  ),
+  ],
+  ),
+  ];
 
-    final buttons = [
-      _buildDynamicButton('创建群组', _createGroup),
-      _buildDynamicButton('获取已加入群组列表', _getJoinedGroupList),
-      _buildDynamicButton('获取群组信息', _getGroupsInfo),
-      _buildDynamicButton('设置群组信息', _setGroupInfo),
-      _buildDynamicButton('初始化群属性', _initGroupAttributes),
-      _buildDynamicButton('设置群属性', _setGroupAttributes),
-      _buildDynamicButton('删除群属性', _deleteGroupAttributes),
-      _buildDynamicButton('获取群属性', _getGroupAttributes),
-      _buildDynamicButton('获取群成员列表', _getGroupMemberList),
-      _buildDynamicButton('获取群成员资料', _getGroupMembersInfo),
-      _buildDynamicButton('修改群成员资料', _setGroupMemberInfo),
-      _buildDynamicButton('禁言群成员', _muteGroupMember),
-      _buildDynamicButton('邀请他人入群', _inviteUserToGroup),
-      _buildDynamicButton('踢人', _kickGroupMember),
-      _buildDynamicButton('设置群成员角色', _setGroupMemberRole),
-      _buildDynamicButton('转让群主', _transferGroupOwner),
-      _buildDynamicButton('标记群成员', _markGroupMemberList),
-      _buildDynamicButton('获取群组申请列表', _getGroupApplicationList),
-      _buildDynamicButton('接受加群申请', _acceptGroupApplication),
-      _buildDynamicButton('拒绝加群申请', _refuseGroupApplication),
-      _buildDynamicButton('获取群组在线人数', _getGroupOnlineMemberCount),
-      _buildDynamicButton('标记群组申请已读', _setGroupApplicationRead),
-      _buildDynamicButton('搜索群组', _searchGroups),
-      _buildDynamicButton('搜索群成员', _searchGroupMembers),
-      _buildDynamicButton('搜索云端群组', _searchCloudGroups),
-      _buildDynamicButton('搜索云端群成员', _searchCloudGroupMembers),
-      _buildDynamicButton('设置群计数器', _setGroupCounters),
-      _buildDynamicButton('获取群计数器', _getGroupCounters),
-      _buildDynamicButton('递增群计数器', _increaseGroupCounter),
-      _buildDynamicButton('递减群计数器', _decreaseGroupCounter),
-    ];
+  final buttons = [
+  _buildDynamicButton('CreateGroup', _createGroup),
+  _buildDynamicButton('Get joined group list', _getJoinedGroupList),
+  _buildDynamicButton('Get group info', _getGroupsInfo),
+  _buildDynamicButton('Set group info', _setGroupInfo),
+  _buildDynamicButton('Initialize group attribute', _initGroupAttributes),
+  _buildDynamicButton('Set group attribute', _setGroupAttributes),
+  _buildDynamicButton('Delete group attribute', _deleteGroupAttributes),
+  _buildDynamicButton('Get group attribute', _getGroupAttributes),
+  _buildDynamicButton('Get group member list', _getGroupMemberList),
+  _buildDynamicButton('Get group member profile', _getGroupMembersInfo),
+  _buildDynamicButton('Modify group member profile', _setGroupMemberInfo),
+  _buildDynamicButton('Mute group member', _muteGroupMember),
+  _buildDynamicButton('Invite others to join group', _inviteUserToGroup),
+  _buildDynamicButton('Kick', _kickGroupMember),
+  _buildDynamicButton('Set group member role', _setGroupMemberRole),
+  _buildDynamicButton('Transfer group owner', _transferGroupOwner),
+  _buildDynamicButton('Mark group member', _markGroupMemberList),
+  _buildDynamicButton('Get group application list', _getGroupApplicationList),
+  _buildDynamicButton('Accept group join application', _acceptGroupApplication),
+  _buildDynamicButton('Reject group join application', _refuseGroupApplication),
+  _buildDynamicButton('Get group online count', _getGroupOnlineMemberCount),
+  _buildDynamicButton('Mark group application as read', _setGroupApplicationRead),
+  _buildDynamicButton('Search group', _searchGroups),
+  _buildDynamicButton('Search group member', _searchGroupMembers),
+  _buildDynamicButton('Search cloud groups', _searchCloudGroups),
+  _buildDynamicButton('Search cloud group members', _searchCloudGroupMembers),
+  _buildDynamicButton('Set group counter', _setGroupCounters),
+  _buildDynamicButton('Get group counter', _getGroupCounters),
+  _buildDynamicButton('Increment group counter', _increaseGroupCounter),
+  _buildDynamicButton('Decrement group counter', _decreaseGroupCounter),
+  ];
 
-    return BaseAPITest(
-      title: '群组管理',
-      inputFields: inputFields,
-      buttons: buttons,
-      onClearLog: _clearLog,
-    );
+  return BaseAPITest(
+  title: 'Group management',
+  inputFields: inputFields,
+  buttons: buttons,
+  onClearLog: _clearLog,
+  );
   }
 
   Widget _buildDynamicButton(String text, VoidCallback onPressed) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 1.0),
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 3.0),
-          minimumSize: Size(text.length * 6.0 + 12.0, 30.0),
-          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          visualDensity: VisualDensity.compact,
-          textStyle: const TextStyle(fontSize: 12.0),
-          foregroundColor: Colors.white,
-          backgroundColor: Colors.blue,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(4.0),
-          ),
-        ),
-        child: Text(text),
-      ),
-    );
+  return Container(
+  margin: const EdgeInsets.only(bottom: 1.0),
+  child: ElevatedButton(
+  onPressed: onPressed,
+  style: ElevatedButton.styleFrom(
+  padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 3.0),
+  minimumSize: Size(text.length * 6.0 + 12.0, 30.0),
+  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+  visualDensity: VisualDensity.compact,
+  textStyle: const TextStyle(fontSize: 12.0),
+  foregroundColor: Colors.white,
+  backgroundColor: Colors.blue,
+  shape: RoundedRectangleBorder(
+  borderRadius: BorderRadius.circular(4.0),
+  ),
+  ),
+  child: Text(text),
+  ),
+  );
   }
 
   @override
   void dispose() {
-    _groupIDController.dispose();
-    _groupNameController.dispose();
-    _groupTypeController.dispose();
-    _userIDListController.dispose();
-    _groupIntroductionController.dispose();
-    _groupNotificationController.dispose();
-    _groupFaceURLController.dispose();
-    _notificationController.dispose();
-    _introductionController.dispose();
-    _faceUrlController.dispose();
-    _isAllMutedController.dispose();
-    _isSupportTopicController.dispose();
-    _addOptController.dispose();
-    _approveOptController.dispose();
-    _isEnablePermissionGroupController.dispose();
-    _defaultPermissionsController.dispose();
-    _nextSeqController.dispose();
-    _countController.dispose();
-    _offsetController.dispose();
-    _nameCardController.dispose();
-    _userIDController.dispose();
-    _secondsController.dispose();
-    _reasonController.dispose();
-    _fromUserController.dispose();
-    _toUserController.dispose();
-    _addTimeController.dispose();
-    _typeController.dispose();
-    _roleController.dispose();
-    super.dispose();
+  _groupIDController.dispose();
+  _groupNameController.dispose();
+  _groupTypeController.dispose();
+  _userIDListController.dispose();
+  _groupIntroductionController.dispose();
+  _groupNotificationController.dispose();
+  _groupFaceURLController.dispose();
+  _notificationController.dispose();
+  _introductionController.dispose();
+  _faceUrlController.dispose();
+  _isAllMutedController.dispose();
+  _isSupportTopicController.dispose();
+  _addOptController.dispose();
+  _approveOptController.dispose();
+  _isEnablePermissionGroupController.dispose();
+  _defaultPermissionsController.dispose();
+  _nextSeqController.dispose();
+  _countController.dispose();
+  _offsetController.dispose();
+  _nameCardController.dispose();
+  _userIDController.dispose();
+  _secondsController.dispose();
+  _reasonController.dispose();
+  _fromUserController.dispose();
+  _toUserController.dispose();
+  _addTimeController.dispose();
+  _typeController.dispose();
+  _roleController.dispose();
+  super.dispose();
   }
 }
