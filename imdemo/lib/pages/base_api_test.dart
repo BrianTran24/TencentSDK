@@ -2,40 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tencent_cloud_chat_sdk_example/utils/log_manager.dart';
 
-// 通用样式常量
+// Common style constants
 class APITestStyle {
-  // 输入框样式常量
-  static const double INPUT_HEIGHT = 30.0;           // 输入框高度
-  static const double INPUT_FONT_SIZE = 13.0;        // 输入框字体大小
-  static const double INPUT_LABEL_FONT_SIZE = 12.0;  // 输入框标签字体大小
-  static const EdgeInsets INPUT_PADDING = EdgeInsets.symmetric(horizontal: 8, vertical: 8); // 输入框内边距
+  // Input field style constants
+  static const double INPUT_HEIGHT = 30.0;           // Input field height
+  static const double INPUT_FONT_SIZE = 13.0;        // Input field font size
+  static const double INPUT_LABEL_FONT_SIZE = 12.0;  // Input field label font size
+  static const EdgeInsets INPUT_PADDING = EdgeInsets.symmetric(horizontal: 8, vertical: 8); // Input field padding
   
-  // 按钮样式常量
-  static const double BUTTON_HORIZONTAL_PADDING = 5.0;   // 按钮内部左右内边距
-  static const double BUTTON_VERTICAL_PADDING = 3.0;     // 按钮内部上下内边距
-  static const double BUTTON_MIN_HEIGHT = 30.0;          // 按钮最小高度
-  static const double BUTTON_FONT_SIZE = 12.0;           // 按钮文字大小
-  static const double BUTTON_BORDER_RADIUS = 4.0;        // 按钮圆角半径
-  static const double BUTTON_CHAR_WIDTH = 6.0;           // 每个字符的估计宽度
-  static const double BUTTON_EXTRA_WIDTH = 12.0;         // 按钮额外宽度
-  static const Color BUTTON_TEXT_COLOR = Colors.white;   // 按钮文字颜色
-  static const Color BUTTON_BG_COLOR = Colors.blue;      // 按钮背景颜色
+  // Button style constants
+  static const double BUTTON_HORIZONTAL_PADDING = 5.0;   // Button horizontal padding
+  static const double BUTTON_VERTICAL_PADDING = 3.0;     // Button vertical padding
+  static const double BUTTON_MIN_HEIGHT = 30.0;          // Button minimum height
+  static const double BUTTON_FONT_SIZE = 12.0;           // Button font size
+  static const double BUTTON_BORDER_RADIUS = 4.0;        // Button border radius
+  static const double BUTTON_CHAR_WIDTH = 6.0;           // Estimated width per character
+  static const double BUTTON_EXTRA_WIDTH = 12.0;         // Button extra width
+  static const Color BUTTON_TEXT_COLOR = Colors.white;   // Button text color
+  static const Color BUTTON_BG_COLOR = Colors.blue;      // Button background color
   
-  // 布局常量
-  static const double HORIZONTAL_SPACING = 8.0;         // 水平间距
-  static const double VERTICAL_SPACING = 4.0;           // 垂直间距
-  static const double LABEL_WIDTH = 80.0;               // 标签宽度
+  // Layout constants
+  static const double HORIZONTAL_SPACING = 8.0;         // Horizontal spacing
+  static const double VERTICAL_SPACING = 4.0;           // Vertical spacing
+  static const double LABEL_WIDTH = 80.0;               // Label width
   
-  // 日志区域样式常量
-  static const double LOG_AREA_HEIGHT = 180.0;           // 日志区域高度
-  static const double LOG_LABEL_FONT_SIZE = 13.0;        // 日志标签字体大小
-  static const double LOG_CONTENT_FONT_SIZE = 10.0;      // 日志内容字体大小
-  static const Color LOG_LABEL_COLOR = Colors.black;     // 日志标签颜色
-  static const Color LOG_CONTENT_COLOR = Colors.black54; // 日志内容颜色
-  static const Color LOG_AREA_BG_COLOR = Color(0xFFE8F0F8); // 日志区域背景色
+  // Log area style constants
+  static const double LOG_AREA_HEIGHT = 180.0;           // Log area height
+  static const double LOG_LABEL_FONT_SIZE = 13.0;        // Log label font size
+  static const double LOG_CONTENT_FONT_SIZE = 10.0;      // Log content font size
+  static const Color LOG_LABEL_COLOR = Colors.black;     // Log label color
+  static const Color LOG_CONTENT_COLOR = Colors.black54; // Log content color
+  static const Color LOG_AREA_BG_COLOR = Color(0xFFE8F0F8); // Log area background color
 }
 
-// 通用按钮组件
+// Common button component
 class APITestButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
@@ -87,7 +87,7 @@ class APITestButton extends StatelessWidget {
   }
 }
 
-// 基础API测试页面组件
+// Base API test page component
 class BaseAPITest extends StatefulWidget {
   final String title;
   final List<Widget> inputFields;
@@ -109,7 +109,7 @@ class BaseAPITest extends StatefulWidget {
 class _BaseAPITestState extends State<BaseAPITest> {
   @override
   Widget build(BuildContext context) {
-    // 使用 Consumer 监听 LogManager 的变化
+    // Use Consumer to listen to LogManager changes
     return Consumer<LogManager>(
       builder: (context, logManager, child) {
         return Scaffold(
@@ -118,13 +118,13 @@ class _BaseAPITestState extends State<BaseAPITest> {
             actions: [
               TextButton(
                 onPressed: widget.onClearLog,
-                child: const Text('清空日志'),
+                child: const Text('Clear log'),
               ),
             ],
           ),
           body: Column(
             children: [
-              // 日志区域
+              // Log area
               Container(
                 height: APITestStyle.LOG_AREA_HEIGHT,
                 color: APITestStyle.LOG_AREA_BG_COLOR,
@@ -136,7 +136,7 @@ class _BaseAPITestState extends State<BaseAPITest> {
                       children: [
                         Row(
                           children: [
-                            const Text('操作日志: ',
+                            const Text('Operation log: ',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: APITestStyle.LOG_LABEL_FONT_SIZE,
@@ -157,7 +157,7 @@ class _BaseAPITestState extends State<BaseAPITest> {
                         const Divider(height: 4),
                         Row(
                           children: [
-                            const Text('SDK回调: ',
+                            const Text('SDK callback: ',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: APITestStyle.LOG_LABEL_FONT_SIZE,
@@ -178,7 +178,7 @@ class _BaseAPITestState extends State<BaseAPITest> {
                         const Divider(height: 4),
                         Row(
                           children: [
-                            const Text('简单消息: ',
+                            const Text('Simple message: ',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: APITestStyle.LOG_LABEL_FONT_SIZE,
@@ -199,7 +199,7 @@ class _BaseAPITestState extends State<BaseAPITest> {
                         const Divider(height: 4),
                         Row(
                           children: [
-                            const Text('高级消息: ',
+                            const Text('Advanced message: ',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: APITestStyle.LOG_LABEL_FONT_SIZE,
@@ -220,7 +220,7 @@ class _BaseAPITestState extends State<BaseAPITest> {
                         const Divider(height: 4),
                         Row(
                           children: [
-                            const Text('群组回调: ',
+                            const Text('Group callback: ',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: APITestStyle.LOG_LABEL_FONT_SIZE,
@@ -241,7 +241,7 @@ class _BaseAPITestState extends State<BaseAPITest> {
                         const Divider(height: 4),
                         Row(
                           children: [
-                            const Text('会话回调: ',
+                            const Text('Conversation callback: ',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: APITestStyle.LOG_LABEL_FONT_SIZE,
@@ -262,7 +262,7 @@ class _BaseAPITestState extends State<BaseAPITest> {
                         const Divider(height: 4),
                         Row(
                           children: [
-                            const Text('好友回调: ',
+                            const Text('Friend callback: ',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: APITestStyle.LOG_LABEL_FONT_SIZE,
@@ -283,7 +283,7 @@ class _BaseAPITestState extends State<BaseAPITest> {
                         const Divider(height: 4),
                         Row(
                           children: [
-                            const Text('社群回调: ',
+                            const Text('Community callback: ',
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: APITestStyle.LOG_LABEL_FONT_SIZE,
@@ -307,7 +307,7 @@ class _BaseAPITestState extends State<BaseAPITest> {
                 ),
               ),
               
-              // 输入和按钮区域
+              // Input and button area
               Expanded(
                 child: SingleChildScrollView(
                   child: Padding(
@@ -315,13 +315,13 @@ class _BaseAPITestState extends State<BaseAPITest> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // 输入字段
+                        // Input fields
                         ...widget.inputFields.map((field) => Padding(
                           padding: const EdgeInsets.only(bottom: APITestStyle.VERTICAL_SPACING),
                           child: field,
                         )).toList(),
                         
-                        // 按钮区域
+                        // Button area
                         const SizedBox(height: 8),
                         Wrap(
                           spacing: APITestStyle.HORIZONTAL_SPACING,

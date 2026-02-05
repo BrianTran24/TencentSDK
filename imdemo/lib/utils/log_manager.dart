@@ -1,14 +1,14 @@
 import 'package:flutter/foundation.dart';
 
-/// 全局日志管理器，用于集中管理各种日志
-/// 使用 ChangeNotifier 实现响应式更新
+/// Global log manager for centralized log management
+/// Uses ChangeNotifier for reactive updates
 class LogManager extends ChangeNotifier {
-  // 单例实现
+  // Singleton implementation
   static final LogManager _instance = LogManager._internal();
   factory LogManager() => _instance;
   LogManager._internal();
 
-  // 各种类型的日志
+  // Different types of logs
   String _logText = '';
   String _simpleMsgLog = '';
   String _advMsgLog = '';
@@ -28,55 +28,55 @@ class LogManager extends ChangeNotifier {
   String get friendshipLog => _friendshipLog;
   String get communityLog => _communityLog;
 
-  // 更新操作日志
+  // Update operation log
   void updateLogText(String text) {
     _logText = '$text\n$_logText';
     notifyListeners();
   }
 
-  // 更新简单消息日志
+  // Update simple message log
   void updateSimpleMsgLog(String text) {
     _simpleMsgLog = '$text\n$_simpleMsgLog';
     notifyListeners();
   }
 
-  // 更新高级消息日志
+  // Update advanced message log
   void updateAdvMsgLog(String text) {
     _advMsgLog = '$text\n$_advMsgLog';
     notifyListeners();
   }
 
-  // 更新群组日志
+  // Update group log
   void updateGroupLog(String text) {
     _groupLog = '$text\n$_groupLog';
     notifyListeners();
   }
 
-  // 更新网络状态日志
+  // Update network status log
   void updateNetStatusLog(String text) {
     _timSDKLog = '$text\n$_timSDKLog';
     notifyListeners();
   }
 
-  // 更新会话日志
+  // Update conversation log
   void updateConversationLog(String text) {
     _conversationLog = '$text\n$_conversationLog';
     notifyListeners();
   }
 
-  // 更新好友日志
+  // Update friend log
   void updateFriendshipLog(String text) {
     _friendshipLog = '$text\n$_friendshipLog';
     notifyListeners();
   }
 
-  // 更新社区日志
+  // Update community log
   void updateCommunityLog(String text) {
     _communityLog = '$text\n$_communityLog';
     notifyListeners();
   }
 
-  // 清空所有日志
+  // Clear all logs
   void clearAllLogs() {
     _logText = '';
     _simpleMsgLog = '';

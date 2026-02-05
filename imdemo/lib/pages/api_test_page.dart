@@ -48,27 +48,27 @@ class _APITestPageState extends State<APITestPage> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: '基础',
+            label: 'Basic',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.chat),
-            label: '会话',
+            label: 'Conversation',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.message),
-            label: '消息',
+            label: 'Message',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.group),
-            label: '群组',
+            label: 'Group',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.people),
-            label: '关系链',
+            label: 'Relationship',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.forum),
-            label: '社群',
+            label: 'Community',
           ),
         ],
       ),
