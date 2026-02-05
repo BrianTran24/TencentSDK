@@ -8,7 +8,7 @@ import 'package:tencent_cloud_chat_sdk_example/utils/log_manager.dart';
 import 'package:tencent_cloud_chat_sdk_example/utils/listener_manager.dart';
 
 void main() {
-  // 预初始化全局监听器管理器
+  // Pre-initialize global listener manager
   final listenerManager = ListenerManager();
   listenerManager.initialize();
   

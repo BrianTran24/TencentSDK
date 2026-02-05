@@ -8,39 +8,39 @@ class Utils {
     if (message.elemType == MessageElemType.V2TIM_ELEM_TYPE_TEXT) {
       m = "text ${message.textElem?.text}";
     }
-    // 使用自定义消息
+    // Handle custom message
     if (message.elemType == MessageElemType.V2TIM_ELEM_TYPE_CUSTOM) {
       m = "custom ${message.customElem?.data}";
     }
-    // 使用图片消息
+    // Handle image message
     if (message.elemType == MessageElemType.V2TIM_ELEM_TYPE_IMAGE) {
       m = "image ${message.imageElem?.path}";
     }
-    // 处理视频消息
+    // Handle video message
     if (message.elemType == MessageElemType.V2TIM_ELEM_TYPE_VIDEO) {
       m = "video ${message.videoElem?.videoPath}";
     }
-    // 处理音频消息
+    // Handle audio message
     if (message.elemType == MessageElemType.V2TIM_ELEM_TYPE_SOUND) {
       m = "sound ${message.soundElem?.url}";
     }
-    // 处理文件消息
+    // Handle file message
     if (message.elemType == MessageElemType.V2TIM_ELEM_TYPE_FILE) {
       m = "file ${message.fileElem?.url}";
     }
-    // 处理位置消息
+    // Handle location message
     if (message.elemType == MessageElemType.V2TIM_ELEM_TYPE_LOCATION) {
       m = "location";
     }
-    // 处理表情消息
+    // Handle face message
     if (message.elemType == MessageElemType.V2TIM_ELEM_TYPE_FACE) {
       m = "face";
     }
-    // 处理群组tips文本消息
+    // Handle group tips message
     if (message.elemType == MessageElemType.V2TIM_ELEM_TYPE_GROUP_TIPS) {
       m = "group tips";
     }
-    // 处理合并消息消息
+    // Handle merger message
     if (message.elemType == MessageElemType.V2TIM_ELEM_TYPE_MERGER) {
       m = "merger";
     }

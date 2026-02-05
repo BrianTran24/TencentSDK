@@ -36,14 +36,14 @@ import 'package:tencent_cloud_chat_sdk/models/v2_tim_user_full_info.dart'
 import 'package:tencent_cloud_chat_sdk/tencent_im_sdk_plugin.dart';
 import 'package:tencent_cloud_chat_sdk_example/utils/log_manager.dart';
 
-/// 全局监听器管理类，用于初始化和管理所有监听器
+/// Global listener manager class for initializing and managing all listeners
 class ListenerManager {
-  // 单例实现
+  // Singleton implementation
   static final ListenerManager _instance = ListenerManager._internal();
   factory ListenerManager() => _instance;
   ListenerManager._internal();
 
-  // 各种监听器
+  // Various listeners
   late V2TimSDKListener _sdkListener;
   late V2TimSimpleMsgListener _simpleMsgListener;
   late V2TimAdvancedMsgListener _advancedMsgListener;
@@ -53,13 +53,13 @@ class ListenerManager {
   late V2TimFriendshipListener _friendshipListener;
   late V2TimSignalingListener _signalingListener;
 
-  // 是否已初始化
+  // Whether initialized
   bool _isInitialized = false;
 
-  // 日志管理器
+  // Log manager
   final LogManager _logManager = LogManager();
 
-  // 初始化所有监听器
+  // Initialize all listeners
   void initialize() {
     if (_isInitialized) return;
 
@@ -75,7 +75,7 @@ class ListenerManager {
     _isInitialized = true;
   }
 
-  // 初始化SDK监听器
+  // Initialize SDK listener
   void _initSDKListener() {
     _sdkListener = V2TimSDKListener(
       onConnecting: () {
@@ -123,7 +123,7 @@ class ListenerManager {
     );
   }
 
-  // 初始化简单消息监听器
+  // Initialize simple message listener
   void _initSimpleMsgListener() {
     _simpleMsgListener = V2TimSimpleMsgListener(
       onRecvC2CTextMessage: (msgID, sender, text) {
@@ -141,7 +141,7 @@ class ListenerManager {
     );
   }
 
-  // 初始化高级消息监听器
+  // Initialize advanced message listener
   void _initAdvancedMsgListener() {
     _advancedMsgListener = V2TimAdvancedMsgListener(
       onRecvNewMessage: (V2TimMessage message) {
@@ -199,7 +199,7 @@ class ListenerManager {
     );
   }
 
-  // 初始化群组监听器
+  // Initialize group listener
   void _initGroupListener() {
     _groupListener = V2TimGroupListener(
       onGroupCreated: (String groupID) {
@@ -294,7 +294,7 @@ class ListenerManager {
     );
   }
 
-  // 初始化会话监听器
+  // Initialize conversation listener
   void _initConversationListener() {
     _conversationListener = V2TimConversationListener(
       onSyncServerStart: () {
@@ -357,7 +357,7 @@ class ListenerManager {
     );
   }
 
-  // 初始化社区监听器
+  // Initialize community listener
   void _initCommunityListener() {
     _communityListener = V2TimCommunityListener(
       onCreateTopic: (String groupID, String topicID) {
@@ -399,7 +399,7 @@ class ListenerManager {
     );
   }
 
-  // 初始化好友关系监听器
+  // Initialize friendship listener
   void _initFriendshipListener() {
     _friendshipListener = V2TimFriendshipListener(
       onFriendApplicationListAdded: (applicationList) {
@@ -457,37 +457,37 @@ class ListenerManager {
     );
   }
 
-  // 注册所有监听器到SDK
+  // Register all listeners to SDK
   void registerAllListeners() {
     if (!_isInitialized) {
       initialize();
     }
 
-    // 注册SDK监听器（在 initSDK 时已注册）
+    // Register SDK listener (already registered in initSDK)
 
-    // 注册消息监听器
+    // Register message listeners
     TencentImSDKPlugin.v2TIMManager.addSimpleMsgListener(listener: _simpleMsgListener);
     TencentImSDKPlugin.v2TIMManager.getMessageManager().addAdvancedMsgListener(listener: _advancedMsgListener);
 
-    // 注册群组监听器
+    // Register group listener
     TencentImSDKPlugin.v2TIMManager.addGroupListener(listener: _groupListener);
 
-    // 注册会话监听器
+    // Register conversation listener
     TencentImSDKPlugin.v2TIMManager.getConversationManager().addConversationListener(listener: _conversationListener);
 
-    // 注册社区监听器
+    // Register community listener
     TencentImSDKPlugin.v2TIMManager.getCommunityManager().addCommunityListener(listener: _communityListener);
 
-    // 注册好友关系监听器
+    // Register friendship listener
     TencentImSDKPlugin.v2TIMManager.getFriendshipManager().addFriendListener(listener: _friendshipListener);
 
-    // 注册信令监听器
+    // Register signaling listener
     TencentImSDKPlugin.v2TIMManager.getSignalingManager().addSignalingListener(listener: _signalingListener);
 
-    _logManager.updateLogText('所有监听器已注册');
+    _logManager.updateLogText('All listeners registered');
   }
 
-  // 获取SDK监听器
+  // Get SDK listener
   V2TimSDKListener get sdkListener {
     if (!_isInitialized) {
       initialize();
@@ -495,7 +495,7 @@ class ListenerManager {
     return _sdkListener;
   }
 
-  // 获取简单消息监听器
+  // Get simple message listener
   V2TimSimpleMsgListener get simpleMsgListener {
     if (!_isInitialized) {
       initialize();
@@ -503,7 +503,7 @@ class ListenerManager {
     return _simpleMsgListener;
   }
 
-  // 获取高级消息监听器
+  // Get advanced message listener
   V2TimAdvancedMsgListener get advancedMsgListener {
     if (!_isInitialized) {
       initialize();
@@ -511,7 +511,7 @@ class ListenerManager {
     return _advancedMsgListener;
   }
 
-  // 获取群组监听器
+  // Get group listener
   V2TimGroupListener get groupListener {
     if (!_isInitialized) {
       initialize();
@@ -519,7 +519,7 @@ class ListenerManager {
     return _groupListener;
   }
 
-  // 获取会话监听器
+  // Get conversation listener
   V2TimConversationListener get conversationListener {
     if (!_isInitialized) {
       initialize();
@@ -527,7 +527,7 @@ class ListenerManager {
     return _conversationListener;
   }
 
-  // 获取社区监听器
+  // Get community listener
   V2TimCommunityListener get communityListener {
     if (!_isInitialized) {
       initialize();
@@ -535,7 +535,7 @@ class ListenerManager {
     return _communityListener;
   }
 
-  // 获取好友关系监听器
+  // Get friendship listener
   V2TimFriendshipListener get friendshipListener {
     if (!_isInitialized) {
       initialize();
