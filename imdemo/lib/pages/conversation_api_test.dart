@@ -474,7 +474,7 @@ class _ConversationAPITestState extends State<ConversationAPITest> {
   return null;
   }
 
-  // If selected"No mark"，then returnnull
+  // If selected"No mark", then returnnull
   if (_selectedFilterMarkTypes.contains(0)) {
   return null;
   }
@@ -490,7 +490,7 @@ class _ConversationAPITestState extends State<ConversationAPITest> {
   @override
   Widget build(BuildContext context) {
   final inputFields = [
-  // ConversationIDSeparate line，Because it may be long
+  // ConversationIDSeparate line, Because it may be long
   Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [
@@ -509,7 +509,7 @@ class _ConversationAPITestState extends State<ConversationAPITest> {
   ),
   ],
   ),
-  // ConversationIDlistSeparate line，Because it may be long
+  // ConversationIDlistSeparate line, Because it may be long
   Column(
   crossAxisAlignment: CrossAxisAlignment.start,
   children: [

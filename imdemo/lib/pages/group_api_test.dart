@@ -514,7 +514,7 @@ class _GroupAPITestState extends State<GroupAPITest> {
   }
   _addLog('Search group: $groupLog');
   } else {
-  _addLog('Search groupfailed，code: ${result.code} desc: ${result.desc}');
+  _addLog('Search groupfailed, code: ${result.code} desc: ${result.desc}');
   }
   } catch (e) {
   _addLog('Search groupfailed: $e');
@@ -545,7 +545,7 @@ class _GroupAPITestState extends State<GroupAPITest> {
   }
   _addLog('_searchCloudGroups: $groupLog');
   } else {
-  _addLog('_searchCloudGroups failed，code: ${result.code} desc: ${result.desc}');
+  _addLog('_searchCloudGroups failed, code: ${result.code} desc: ${result.desc}');
   }
   } catch (e) {
   _addLog('_searchCloudGroups failed: $e');
@@ -606,7 +606,7 @@ class _GroupAPITestState extends State<GroupAPITest> {
   });
   _addLog('_searchCloudGroups: $groupLog');
   } else {
-  _addLog('_searchCloudGroups failed，code: ${result.code} desc: ${result.desc}');
+  _addLog('_searchCloudGroups failed, code: ${result.code} desc: ${result.desc}');
   }
   } catch (e) {
   _addLog('_searchCloudGroupMembers failed: $e');

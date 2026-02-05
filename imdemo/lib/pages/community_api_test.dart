@@ -363,7 +363,7 @@ class _CommunityAPITestState extends State<CommunityAPITest> {
   return;
   }
   try {
-  // Create topic permissionMap，Contains two values for testing
+  // Create topic permissionMap, Contains two values for testing
   Map<String, int> topicPermissionMap = {
   _topicIDController.text: int.parse(_topicPermissionController.text),
   "${_topicIDController.text}_2": int.parse(_topicPermissionController.text) + 1,
@@ -389,7 +389,7 @@ class _CommunityAPITestState extends State<CommunityAPITest> {
 
   List<String> topicIDList = [];
   if (_topicIDController.text.isNotEmpty) {
-  // If no topic specifiedIDlist，then use single topicID
+  // If no topic specifiedIDlist, then use single topicID
   topicIDList = [_topicIDController.text];
   } else {
   _addLog('Please enterTopicIDorTopicIDlist');
@@ -415,7 +415,7 @@ class _CommunityAPITestState extends State<CommunityAPITest> {
   return;
   }
   try {
-  // Create topic permissionMap，Contains two values for testing
+  // Create topic permissionMap, Contains two values for testing
   Map<String, int> topicPermissionMap = {
   _topicIDController.text: int.parse(_topicPermissionController.text),
   "${_topicIDController.text}_2": int.parse(_topicPermissionController.text) + 1,
@@ -441,7 +441,7 @@ class _CommunityAPITestState extends State<CommunityAPITest> {
 
   List<String> topicIDList = [];
   if (_topicIDController.text.isNotEmpty) {
-  // If no topic specifiedIDlist，then use single topicID
+  // If no topic specifiedIDlist, then use single topicID
   topicIDList = [_topicIDController.text];
   } else {
   _addLog('Please enterTopicIDorTopicIDlist');

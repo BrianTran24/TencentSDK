@@ -92,7 +92,7 @@ class _FriendshipAPITestState extends State<FriendshipAPITest> {
   // Get specified friend profile
   Future<void> _getFriendsInfo() async {
   if (_userIDListController.text.isEmpty) {
-  _addLog('Please enterUser ID list，Separated by commas');
+  _addLog('Please enterUser ID list, Separated by commas');
   return;
   }
   try {
@@ -262,7 +262,7 @@ class _FriendshipAPITestState extends State<FriendshipAPITest> {
   // Add user to blacklist
   Future<void> _addToBlackList() async {
   if (_userIDListController.text.isEmpty) {
-  _addLog('Please enterUser ID list，Separated by commas');
+  _addLog('Please enterUser ID list, Separated by commas');
   return;
   }
   try {
@@ -278,7 +278,7 @@ class _FriendshipAPITestState extends State<FriendshipAPITest> {
   // Remove user from blacklist
   Future<void> _deleteFromBlackList() async {
   if (_userIDListController.text.isEmpty) {
-  _addLog('Please enterUser ID list，Separated by commas');
+  _addLog('Please enterUser ID list, Separated by commas');
   return;
   }
   try {
@@ -302,7 +302,7 @@ class _FriendshipAPITestState extends State<FriendshipAPITest> {
   }
   _addLog('Get blacklist: $friendLog');
   } else {
-  _addLog('Get blacklistfailed，code: ${result.code}, desc: ${result.desc}');
+  _addLog('Get blacklistfailed, code: ${result.code}, desc: ${result.desc}');
   }
   } catch (e) {
   _addLog('Get blacklistfailed: $e');
@@ -426,7 +426,7 @@ class _FriendshipAPITestState extends State<FriendshipAPITest> {
   }
   _addLog('Search friend: $friendLog');
   } else {
-  _addLog('Search friendfailed，code: ${searchFriendsRes.code}, desc: ${searchFriendsRes.desc}');
+  _addLog('Search friendfailed, code: ${searchFriendsRes.code}, desc: ${searchFriendsRes.desc}');
   }
   }
 
@@ -465,7 +465,7 @@ class _FriendshipAPITestState extends State<FriendshipAPITest> {
   // Get official account list
   Future<void> _getOfficialAccountsInfo() async {
   if (_userIDListController.text.isEmpty) {
-  _addLog('Please enterOfficial accountIDlist，Separated by commas');
+  _addLog('Please enterOfficial accountIDlist, Separated by commas');
   return;
   }
   try {
@@ -481,7 +481,7 @@ class _FriendshipAPITestState extends State<FriendshipAPITest> {
   // Follow user
   Future<void> _followUser() async {
   if (_followUserListController.text.isEmpty) {
-  _addLog('Please enterFollowIDlist，Separated by commas');
+  _addLog('Please enterFollowIDlist, Separated by commas');
   return;
   }
   try {
@@ -497,7 +497,7 @@ class _FriendshipAPITestState extends State<FriendshipAPITest> {
   // Unfollow user
   Future<void> _unfollowUser() async {
   if (_followUserListController.text.isEmpty) {
-  _addLog('Please enterFollowIDlist，Separated by commas');
+  _addLog('Please enterFollowIDlist, Separated by commas');
   return;
   }
   try {
@@ -549,7 +549,7 @@ class _FriendshipAPITestState extends State<FriendshipAPITest> {
   // Get follow of specified user/Followers/Mutual following count info
   Future<void> _getUserFollowInfo() async {
   if (_userIDListController.text.isEmpty) {
-  _addLog('Please enterUser ID list，Separated by commas');
+  _addLog('Please enterUser ID list, Separated by commas');
   return;
   }
   try {
@@ -565,7 +565,7 @@ class _FriendshipAPITestState extends State<FriendshipAPITest> {
   // Check follow type of specified user
   Future<void> _checkFollowType() async {
   if (_userIDListController.text.isEmpty) {
-  _addLog('Please enterUser ID list，Separated by commas');
+  _addLog('Please enterUser ID list, Separated by commas');
   return;
   }
   try {

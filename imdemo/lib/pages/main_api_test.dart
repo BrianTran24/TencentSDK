@@ -210,7 +210,7 @@ class _MainAPITestState extends State<MainAPITest> {
   }
   }
 
-  // SendC2CText message
+  // SendC2Ctext message
   Future<void> _sendC2CTextMessage() async {
   String receiverID = _receiverIDController.text;
   String text = _messageController.text;
@@ -221,13 +221,13 @@ class _MainAPITestState extends State<MainAPITest> {
   );
 
   if (sendRes.code == 0) {
-  _logManager.updateLogText('SendC2CText messagesuccess: ${sendRes.data?.msgID}');
+  _logManager.updateLogText('SendC2Ctext message success: ${sendRes.data?.msgID}');
   } else {
-  _logManager.updateLogText('SendC2CText messagefailed: ${sendRes.code} ${sendRes.desc}');
+  _logManager.updateLogText('SendC2Ctext messagefailed: ${sendRes.code} ${sendRes.desc}');
   }
   }
 
-  // SendGroupText message
+  // SendGrouptext message
   Future<void> _sendGroupTextMessage() async {
   String groupID = _groupIDController.text;
   String text = _messageController.text;
@@ -239,9 +239,9 @@ class _MainAPITestState extends State<MainAPITest> {
   );
 
   if (sendRes.code == 0) {
-  _logManager.updateLogText('SendGroupText messagesuccess: ${sendRes.data?.msgID}');
+  _logManager.updateLogText('SendGrouptext message success: ${sendRes.data?.msgID}');
   } else {
-  _logManager.updateLogText('SendGroupText messagefailed: ${sendRes.code} ${sendRes.desc}');
+  _logManager.updateLogText('SendGrouptext messagefailed: ${sendRes.code} ${sendRes.desc}');
   }
   }
 
@@ -396,7 +396,7 @@ class _MainAPITestState extends State<MainAPITest> {
   );
 
   if (sendRes.code == 0) {
-  _logManager.updateLogText('SendGroupCustom messagesuccess: ${sendRes.data?.msgID}');
+  _logManager.updateLogText('SendGroupCustom message success: ${sendRes.data?.msgID}');
   } else {
   _logManager.updateLogText('SendGroupCustom messagefailed: ${sendRes.code} ${sendRes.desc}');
   }
@@ -408,7 +408,7 @@ class _MainAPITestState extends State<MainAPITest> {
   String customData = _customDataController.text;
 
   if (receiverID.isEmpty) {
-  _logManager.updateLogText('Please enterReceiverID');
+  _logManager.updateLogText('Please enter ReceiverID');
   return;
   }
 
@@ -423,7 +423,7 @@ class _MainAPITestState extends State<MainAPITest> {
   );
 
   if (sendRes.code == 0) {
-  _logManager.updateLogText('SendC2CCustom messagesuccess: ${sendRes.data?.msgID}');
+  _logManager.updateLogText('SendC2CCustom message success: ${sendRes.data?.msgID}');
   } else {
   _logManager.updateLogText('SendC2CCustom messagefailed: ${sendRes.code} ${sendRes.desc}');
   }
@@ -927,7 +927,7 @@ class _MainAPITestState extends State<MainAPITest> {
 
   // CreatewidthBased oncontentadaptive Button
   Widget _buildDynamicButton(String text, VoidCallback onPressed) {
-  // Based ontext lengthcalculateapproximate width，Ensure text can be fully displayed
+  // Based ontext lengthcalculateapproximate width, Ensure text can be fully displayed
   double width = text.length * BUTTON_CHAR_WIDTH + BUTTON_EXTRA_WIDTH;
 
   return Container(

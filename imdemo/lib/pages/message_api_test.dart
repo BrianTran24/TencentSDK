@@ -113,24 +113,24 @@ class _MessageAPITestState extends State<MessageAPITest> {
   _logManager.clearAllLogs();
   }
 
-  // SendText message
+  // Sendtext message
   Future<void> _sendTextMessage() async {
   if (_messageContentController.text.isEmpty) {
-  _addLog('Please enterMessage content');
+  _addLog('Please enter Message content');
   return;
   }
   if (_receiverIDController.text.isEmpty && _groupIDController.text.isEmpty) {
-  _addLog('Please enterReceiverIDorGroupID');
+  _addLog('Please enter ReceiverIDorGroupID');
   return;
   }
   try {
-  // Create firstText message
+  // First, create text message
   V2TimValueCallback<V2TimMsgCreateInfoResult> createResult = await TencentImSDKPlugin.v2TIMManager.getMessageManager().createTextMessage(
   text: _messageContentController.text,
   );
 
   if (createResult.code != 0) {
-  _addLog('CreateText messagefailed: ${createResult.toLogString()}');
+  _addLog('Create text messagefailed: ${createResult.toLogString()}');
   return;
   }
 
@@ -138,7 +138,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   createMessage!.needReadReceipt = true;
   createMessage.isSupportMessageExtension = true;
 
-  // uikit-v2 Will set message status to sending，Test it. Set by business layer status Do not pass to underlying layer.
+  // uikit-v2 Will set message status to sending, Test it. Set by business layer status Do not pass to underlying layer.
   // createMessage.status = MessageStatus.V2TIM_MSG_STATUS_SENDING;
 
   // Send created message
@@ -155,12 +155,12 @@ class _MessageAPITestState extends State<MessageAPITest> {
   cloudCustomData: 'Cloud custom data from api',
   );
   if (result.code == 0) {
-  _addLog('SendText messagesuccess: ${result.toLogString()}\n');
+  _addLog('Sendtext message success: ${result.toLogString()}\n');
   } else {
-  _addLog('SendText messagefailed: ${result.toLogString()}\n');
+  _addLog('Sendtext messagefailed: ${result.toLogString()}\n');
   }
   } catch (e) {
-  _addLog('SendText messagefailed: $e\n');
+  _addLog('Sendtext messagefailed: $e\n');
   }
   }
 
@@ -171,7 +171,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   return;
   }
   if (_receiverIDController.text.isEmpty && _groupIDController.text.isEmpty) {
-  _addLog('Please enterReceiverIDorGroupID');
+  _addLog('Please enter ReceiverIDorGroupID');
   return;
   }
   try {
@@ -196,7 +196,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   needReadReceipt: true,
   isSupportMessageExtension: true,
   );
-  _addLog('SendCustom messagesuccess: ${result.toLogString()}');
+  _addLog('SendCustom message success: ${result.toLogString()}');
   } catch (e) {
   _addLog('SendCustom messagefailed: $e');
   }
@@ -209,7 +209,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   return;
   }
   if (_receiverIDController.text.isEmpty && _groupIDController.text.isEmpty) {
-  _addLog('Please enterReceiverIDorGroupID');
+  _addLog('Please enter ReceiverIDorGroupID');
   return;
   }
   try {
@@ -233,7 +233,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   needReadReceipt: true,
   isSupportMessageExtension: true,
   );
-  _addLog('SendEmoji messagesuccess: ${result.toLogString()}');
+  _addLog('SendEmoji message success: ${result.toLogString()}');
   } catch (e) {
   _addLog('SendEmoji messagefailed: $e');
   }
@@ -248,7 +248,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   return;
   }
   if (_receiverIDController.text.isEmpty && _groupIDController.text.isEmpty) {
-  _addLog('Please enterReceiverIDorGroupID');
+  _addLog('Please enter ReceiverIDorGroupID');
   return;
   }
   try {
@@ -273,7 +273,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   needReadReceipt: true,
   isSupportMessageExtension: true,
   );
-  _addLog('SendLocation messagesuccess: ${result.toLogString()}');
+  _addLog('SendLocation message success: ${result.toLogString()}');
   } catch (e) {
   _addLog('SendLocation messagefailed: $e');
   }
@@ -346,7 +346,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   userID: _receiverIDController.text.isEmpty ? "" : _receiverIDController.text,
   count: 1);
   if (resultTest.code == 0) {
-  _addLog('Get C2C Historical messagesuccess');
+  _addLog('Get C2C Historical message success');
   } else {
   _addLog('Get C2C Historical messagefailed, code: ${resultTest.code}, desc: ${resultTest.desc}');
   }
@@ -387,7 +387,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   if (_messageList.isNotEmpty) {
   lastMessage = _messageList.first;
   } else {
-  _addLog('Please get historical messages first，willRecallLatest message');
+  _addLog('Please get historical messages first, willRecallLatest message');
   return;
   }
 
@@ -402,10 +402,10 @@ class _MessageAPITestState extends State<MessageAPITest> {
   }
   }
 
-  // SendImage message
+  // Send image message
   Future<void> _sendImageMessage() async {
   if (_receiverIDController.text.isEmpty && _groupIDController.text.isEmpty) {
-  _addLog('Please enterReceiverIDorGroupID');
+  _addLog('Please enter ReceiverIDorGroupID');
   return;
   }
   try {
@@ -429,20 +429,20 @@ class _MessageAPITestState extends State<MessageAPITest> {
   isSupportMessageExtension: true,
   );
   if (result.code == 0) {
-  _addLog('SendImage messagesuccess，msgID: ${result.data?.msgID}');
+  _addLog('Send image message success, msgID: ${result.data?.msgID}');
   } else {
-  _addLog('SendImage messagefailed，code: ${result.code}, desc: ${result.desc}');
+  _addLog('Send image messagefailed, code: ${result.code}, desc: ${result.desc}');
   }
 
   } catch (e) {
-  _addLog('SendImage messagefailed: $e');
+  _addLog('Send image messagefailed: $e');
   }
   }
 
   // SendVideo message
   Future<void> _sendVideoMessage() async {
   if (_receiverIDController.text.isEmpty && _groupIDController.text.isEmpty) {
-  _addLog('Please enterReceiverIDorGroupID');
+  _addLog('Please enter ReceiverIDorGroupID');
   return;
   }
   try {
@@ -468,7 +468,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   needReadReceipt: true,
   isSupportMessageExtension: true,
   );
-  _addLog('SendVideo messagesuccess: ${result.toJson()}');
+  _addLog('SendVideo message success: ${result.toJson()}');
   } catch (e) {
   _addLog('SendVideo messagefailed: $e');
   }
@@ -477,7 +477,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   // SendVoice message
   Future<void> _sendSoundMessage() async {
   if (_receiverIDController.text.isEmpty && _groupIDController.text.isEmpty) {
-  _addLog('Please enterReceiverIDorGroupID');
+  _addLog('Please enter ReceiverIDorGroupID');
   return;
   }
   try {
@@ -501,7 +501,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   needReadReceipt: true,
   isSupportMessageExtension: true,
   );
-  _addLog('SendVoice messagesuccess: ${result.toJson()}');
+  _addLog('SendVoice message success: ${result.toJson()}');
   } catch (e) {
   _addLog('SendVoice messagefailed: $e');
   }
@@ -510,7 +510,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   // SendFile message
   Future<void> _sendFileMessage() async {
   if (_receiverIDController.text.isEmpty && _groupIDController.text.isEmpty) {
-  _addLog('Please enterReceiverIDorGroupID');
+  _addLog('Please enter ReceiverIDorGroupID');
   return;
   }
   if (_fileNameController.text.isEmpty) {
@@ -538,7 +538,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   needReadReceipt: true,
   isSupportMessageExtension: true,
   );
-  _addLog('SendFile messagesuccess: ${result.toJson()}');
+  _addLog('SendFile message success: ${result.toJson()}');
   } catch (e) {
   _addLog('SendFile messagefailed: $e');
   }
@@ -547,7 +547,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   // SendMerged message
   Future<void> _sendMergerMessage() async {
   if (_receiverIDController.text.isEmpty && _groupIDController.text.isEmpty) {
-  _addLog('Please enterReceiverIDorGroupID');
+  _addLog('Please enter ReceiverIDorGroupID');
   return;
   }
   if (_messageList.length < 2) {
@@ -581,7 +581,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   receiver: _receiverIDController.text,
   groupID: _groupIDController.text,
   );
-  _addLog('SendMerged messagesuccess: ${result.toJson()}');
+  _addLog('SendMerged message success: ${result.toJson()}');
   } catch (e) {
   _addLog('SendMerged messagefailed: $e');
   }
@@ -590,7 +590,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   // SendForwarded message
   Future<void> _sendForwardMessage() async {
   if (_receiverIDController.text.isEmpty && _groupIDController.text.isEmpty) {
-  _addLog('Please enterReceiverIDorGroupID');
+  _addLog('Please enter ReceiverIDorGroupID');
   return;
   }
   if (_messageList.isEmpty) {
@@ -623,7 +623,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   );
 
   if (result.code == 0) {
-  _addLog('SendForwarded messagesuccess: ${result.toLogString()}');
+  _addLog('SendForwarded message success: ${result.toLogString()}');
   } else {
   _addLog('SendForwarded messagefailed: ${result.toLogString()}');
   }
@@ -635,7 +635,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   // Send@Message
   Future<void> _sendTextAtMessage() async {
   if (_receiverIDController.text.isEmpty && _groupIDController.text.isEmpty) {
-  _addLog('Please enterReceiverIDorGroupID');
+  _addLog('Please enter ReceiverIDorGroupID');
   return;
   }
   if (_atTextController.text.isEmpty) {
@@ -902,17 +902,17 @@ class _MessageAPITestState extends State<MessageAPITest> {
   return;
   }
   if (_messageContentController.text.isEmpty) {
-  _addLog('Please enterMessage content');
+  _addLog('Please enter Message content');
   return;
   }
   try {
-  // Create firstText message
+  // First, create text message
   final createResult = await TencentImSDKPlugin.v2TIMManager.getMessageManager().createTextMessage(
   text: _messageContentController.text,
   );
 
   if (createResult.code != 0) {
-  _addLog('CreateText messagefailed: ${createResult.toJson()}');
+  _addLog('Create text messagefailed: ${createResult.toJson()}');
   return;
   }
 
@@ -937,17 +937,17 @@ class _MessageAPITestState extends State<MessageAPITest> {
   return;
   }
   if (_messageContentController.text.isEmpty) {
-  _addLog('Please enterMessage content');
+  _addLog('Please enter Message content');
   return;
   }
   try {
-  // Create firstText message
+  // First, create text message
   final createResult = await TencentImSDKPlugin.v2TIMManager.getMessageManager().createTextMessage(
   text: _messageContentController.text,
   );
 
   if (createResult.code != 0) {
-  _addLog('CreateText messagefailed: ${createResult.toJson()}');
+  _addLog('Create text messagefailed: ${createResult.toJson()}');
   return;
   }
 
@@ -1181,7 +1181,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   final result = await TencentImSDKPlugin.v2TIMManager.getMessageManager().findMessages(
   messageIDList: [_messageList[0].msgID ?? ""],
   );
-  _addLog('QueryLocal messagesuccess: ${result.toJson()}');
+  _addLog('QueryLocal message success: ${result.toJson()}');
   } catch (e) {
   _addLog('QueryLocal messagefailed: $e');
   }
@@ -1322,7 +1322,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   }
   }
   );
-  _addLog('Download multimedia messagesuccess: ${result.toJson()}');
+  _addLog('Download multimedia message success: ${result.toJson()}');
   } catch (e) {
   _addLog('Download multimedia messagefailed: $e');
   }
@@ -1488,7 +1488,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   controller: _receiverIDController,
   style: const TextStyle(fontSize: 13),
   decoration: const InputDecoration(
-  hintText: 'Please enterReceiverID',
+  hintText: 'Please enter ReceiverID',
   contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
   border: OutlineInputBorder(),
   ),
@@ -1536,7 +1536,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   controller: _messageContentController,
   style: const TextStyle(fontSize: 13),
   decoration: const InputDecoration(
-  hintText: 'Please enterMessage content',
+  hintText: 'Please enter Message content',
   contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
   border: OutlineInputBorder(),
   ),
@@ -1776,7 +1776,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   controller: _messageTypeListHistoryController,
   style: const TextStyle(fontSize: 13),
   decoration: const InputDecoration(
-  hintText: 'Please enterMessage typelist，Separated by commas(Optional)',
+  hintText: 'Please enter Message typelist, Separated by commas(Optional)',
   contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
   border: OutlineInputBorder(),
   ),
@@ -1803,7 +1803,7 @@ class _MessageAPITestState extends State<MessageAPITest> {
   controller: _messageSeqListHistoryController,
   style: const TextStyle(fontSize: 13),
   decoration: const InputDecoration(
-  hintText: 'Please enterMessage sequence numberlist，Separated by commas(Optional)',
+  hintText: 'Please enter Message sequence numberlist, Separated by commas(Optional)',
   contentPadding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
   border: OutlineInputBorder(),
   ),
@@ -2076,10 +2076,10 @@ class _MessageAPITestState extends State<MessageAPITest> {
 
   final buttons = [
   // Send message button
-  _buildDynamicButton('SendText message', _sendTextMessage),
+  _buildDynamicButton('Sendtext message', _sendTextMessage),
   _buildDynamicButton('SendCustom message', _sendCustomMessage),
   _buildDynamicButton('SendEmoji message', _sendFaceMessage),
-  _buildDynamicButton('SendImage message', _sendImageMessage),
+  _buildDynamicButton('Send image message', _sendImageMessage),
   _buildDynamicButton('SendVideo message', _sendVideoMessage),
   _buildDynamicButton('SendVoice message', _sendSoundMessage),
   _buildDynamicButton('SendFile message', _sendFileMessage),
